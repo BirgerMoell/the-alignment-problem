@@ -8,6 +8,8 @@
 .paper .abstract { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 22px 26px; box-shadow: var(--shadow); }
 .paper .abstract h2 { font-size: 16px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--purple); margin: 0 0 6px; }
 .paper .abstract p { margin: 0; font-size: 17px; }
+.paper .epigraph { margin: 34px 0 0; padding: 0 0 0 22px; border-left: 4px solid var(--purple); font-size: 21px; font-style: italic; color: var(--ink); }
+.paper .epigraph span { display: block; font-style: normal; font-size: 15px; color: var(--muted); margin-top: 8px; }
 .paper section h2 { font-size: 28px; margin: 44px 0 10px; }
 .paper section h3 { font-size: 21px; margin: 28px 0 6px; }
 .paper ul { padding-left: 1.2em; }
@@ -26,5 +28,6 @@
   .paper .abstract { border-radius: 6px; }
   .paper .abstract p { font-size: 10pt; }
   .paper .refs ol { font-size: 8.5pt; }
+  .paper .epigraph { font-size: 11.5pt; }
   .paper a { color: #2a3a8a; text-decoration: none; }
 }
