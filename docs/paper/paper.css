@@ -1,0 +1,30 @@
+.paper-body::before { opacity: 0.6; }
+.paper-nav { max-width: 780px; margin: 0 auto; padding: 20px 16px 0; display: flex; justify-content: space-between; font-size: 15px; }
+.paper-nav a { text-decoration: none; }
+.paper { max-width: 780px; margin: 0 auto; padding: 30px 16px 80px; font-size: 19px; line-height: 1.7; }
+.paper .kind { color: var(--purple); font-weight: 700; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase; margin: 20px 0 0; }
+.paper h1 { font-size: clamp(34px, 5vw, 50px); margin: 10px 0 12px; }
+.paper .author { color: var(--muted); margin: 0 0 30px; }
+.paper .abstract { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 22px 26px; box-shadow: var(--shadow); }
+.paper .abstract h2 { font-size: 16px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--purple); margin: 0 0 6px; }
+.paper .abstract p { margin: 0; font-size: 17px; }
+.paper section h2 { font-size: 28px; margin: 44px 0 10px; }
+.paper section h3 { font-size: 21px; margin: 28px 0 6px; }
+.paper ul { padding-left: 1.2em; }
+.paper .refs ol { font-size: 15px; color: var(--muted); padding-left: 1.6em; }
+.paper .refs li { margin-bottom: 6px; }
+.paper-foot { margin-top: 40px; font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+
+@media print {
+  @page { size: A4; margin: 18mm 18mm 20mm; }
+  :root { --bg: #fff; --card: #fff; --ink: #111; --muted: #444; --line: #ccc; --shadow: none; }
+  body::before, .paper-nav { display: none; }
+  .paper { max-width: none; padding: 0; font-size: 10.5pt; line-height: 1.5; }
+  .paper h1 { font-size: 22pt; }
+  .paper section h2 { font-size: 14pt; margin-top: 18pt; break-after: avoid; }
+  .paper section h3 { font-size: 12pt; break-after: avoid; }
+  .paper .abstract { border-radius: 6px; }
+  .paper .abstract p { font-size: 10pt; }
+  .paper .refs ol { font-size: 8.5pt; }
+  .paper a { color: #2a3a8a; text-decoration: none; }
+}

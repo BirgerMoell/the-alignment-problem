@@ -1,0 +1,429 @@
+{
+ "lang": "music",
+ "title": "The Alignment Problem",
+ "duration": 184.413,
+ "music": true,
+ "scenes": [
+  {
+   "id": "m_intro",
+   "chapter": "Intro",
+   "variant": 1,
+   "start": 0.0,
+   "dur": 11.649,
+   "cues": [
+    5.027,
+    9.973
+   ],
+   "lines": [
+    {
+     "text": "You choose",
+     "start": 5.027,
+     "end": 9.973
+    },
+    {
+     "text": "You choose",
+     "start": 9.973,
+     "end": 11.649
+    }
+   ]
+  },
+  {
+   "id": "m_verse1",
+   "chapter": "Verse 1",
+   "variant": 1,
+   "start": 11.649,
+   "dur": 17.234,
+   "cues": [
+    0.0,
+    4.468,
+    8.378,
+    12.925
+   ],
+   "lines": [
+    {
+     "text": "It read the whole wide internet, the gentle and the cruel",
+     "start": 11.649,
+     "end": 16.117
+    },
+    {
+     "text": "It learned to finish anything, but no one wrote the rules",
+     "start": 16.117,
+     "end": 20.027
+    },
+    {
+     "text": "So we lay two answers side by side and ask you which is best",
+     "start": 20.027,
+     "end": 24.574
+    },
+    {
+     "text": "A million little choices, and the model learns the rest",
+     "start": 24.574,
+     "end": 28.883
+    }
+   ]
+  },
+  {
+   "id": "m_pre",
+   "chapter": "Pre-Chorus",
+   "variant": 1,
+   "start": 28.883,
+   "dur": 9.335,
+   "cues": [
+    0.0,
+    4.787
+   ],
+   "lines": [
+    {
+     "text": "Thumbs up, thumbs down, a quiet signal grows",
+     "start": 28.883,
+     "end": 33.67
+    },
+    {
+     "text": "Chosen and rejected, that's how a model knows",
+     "start": 33.67,
+     "end": 38.218
+    }
+   ]
+  },
+  {
+   "id": "m_chorus",
+   "chapter": "Chorus",
+   "variant": 1,
+   "start": 38.218,
+   "dur": 25.851,
+   "cues": [
+    0.0,
+    2.473,
+    4.548,
+    6.862,
+    9.176,
+    11.33,
+    13.404,
+    15.878
+   ],
+   "lines": [
+    {
+     "text": "This is the alignment problem",
+     "start": 38.218,
+     "end": 40.691
+    },
+    {
+     "text": "Not a monster, just a mirror of our choice",
+     "start": 40.691,
+     "end": 42.766
+    },
+    {
+     "text": "This is the alignment problem",
+     "start": 42.766,
+     "end": 45.08
+    },
+    {
+     "text": "And it's waiting for your voice",
+     "start": 45.08,
+     "end": 47.394
+    },
+    {
+     "text": "Who decides what good should look like?",
+     "start": 47.394,
+     "end": 49.548
+    },
+    {
+     "text": "All of us, so set the bar up high",
+     "start": 49.548,
+     "end": 51.622
+    },
+    {
+     "text": "This is the alignment problem",
+     "start": 51.622,
+     "end": 54.096
+    },
+    {
+     "text": "Let's solve it, you and I",
+     "start": 54.096,
+     "end": 64.069
+    }
+   ]
+  },
+  {
+   "id": "m_verse2",
+   "chapter": "Verse 2",
+   "variant": 1,
+   "start": 64.069,
+   "dur": 18.112,
+   "cues": [
+    0.0,
+    4.548,
+    8.936,
+    13.963
+   ],
+   "lines": [
+    {
+     "text": "A pressure in your chest at night, it tells you: get it checked",
+     "start": 64.069,
+     "end": 68.617
+    },
+    {
+     "text": "Your secrets stay your secrets, every name kept with respect",
+     "start": 68.617,
+     "end": 73.005
+    },
+    {
+     "text": "If someone plans to hurt someone, where should the line be drawn?",
+     "start": 73.005,
+     "end": 78.032
+    },
+    {
+     "text": "Hard questions need a thousand hearts, not one voice on its own",
+     "start": 78.032,
+     "end": 82.181
+    }
+   ]
+  },
+  {
+   "id": "m_pre",
+   "chapter": "Pre-Chorus",
+   "variant": 2,
+   "start": 82.181,
+   "dur": 9.415,
+   "cues": [
+    0.0,
+    4.149
+   ],
+   "lines": [
+    {
+     "text": "Should it please you, or its makers, or the whole human race?",
+     "start": 82.181,
+     "end": 86.33
+    },
+    {
+     "text": "Agree with every word you say, or tell the truth with grace?",
+     "start": 86.33,
+     "end": 91.596
+    }
+   ]
+  },
+  {
+   "id": "m_chorus",
+   "chapter": "Chorus",
+   "variant": 2,
+   "start": 91.596,
+   "dur": 18.032,
+   "cues": [
+    0.0,
+    2.473,
+    4.707,
+    6.941,
+    9.175,
+    11.409,
+    13.484,
+    15.877
+   ],
+   "lines": [
+    {
+     "text": "This is the alignment problem",
+     "start": 91.596,
+     "end": 94.069
+    },
+    {
+     "text": "Not a monster, just a mirror of our choice",
+     "start": 94.069,
+     "end": 96.303
+    },
+    {
+     "text": "This is the alignment problem",
+     "start": 96.303,
+     "end": 98.537
+    },
+    {
+     "text": "And it's waiting for your voice",
+     "start": 98.537,
+     "end": 100.771
+    },
+    {
+     "text": "Who decides what good should look like?",
+     "start": 100.771,
+     "end": 103.005
+    },
+    {
+     "text": "All of us, so set the bar up high",
+     "start": 103.005,
+     "end": 105.08
+    },
+    {
+     "text": "This is the alignment problem",
+     "start": 105.08,
+     "end": 107.473
+    },
+    {
+     "text": "Let's solve it, you and I",
+     "start": 107.473,
+     "end": 109.628
+    }
+   ]
+  },
+  {
+   "id": "m_bridge",
+   "chapter": "Bridge",
+   "variant": 1,
+   "start": 109.628,
+   "dur": 19.228,
+   "cues": [
+    0.0,
+    3.75,
+    7.899,
+    12.526
+   ],
+   "lines": [
+    {
+     "text": "Train a judge to score the answers, that's R-L-H-F",
+     "start": 109.628,
+     "end": 113.378
+    },
+    {
+     "text": "Or learn straight from the pairs we pick, and D-P-O does the rest",
+     "start": 113.378,
+     "end": 117.527
+    },
+    {
+     "text": "But if it only learns to please us, it will flatter, not be true",
+     "start": 117.527,
+     "end": 122.154
+    },
+    {
+     "text": "So we test it in every language, and we ask for something new",
+     "start": 122.154,
+     "end": 128.856
+    }
+   ]
+  },
+  {
+   "id": "m_verse3",
+   "chapter": "Verse 3",
+   "variant": 1,
+   "start": 128.856,
+   "dur": 18.431,
+   "cues": [
+    0.0,
+    4.468,
+    8.697,
+    13.245
+   ],
+   "lines": [
+    {
+     "text": "Cast a vote in the arena, rate the answers that you read",
+     "start": 128.856,
+     "end": 133.324
+    },
+    {
+     "text": "Write the tests in your own language, show it what your people need",
+     "start": 133.324,
+     "end": 137.553
+    },
+    {
+     "text": "Translate, review and argue, bring your values to the frame",
+     "start": 137.553,
+     "end": 142.101
+    },
+    {
+     "text": "Alignment's not a finish line, it's a game we play the same",
+     "start": 142.101,
+     "end": 147.287
+    }
+   ]
+  },
+  {
+   "id": "m_final",
+   "chapter": "Final Chorus",
+   "variant": 1,
+   "start": 147.287,
+   "dur": 18.032,
+   "cues": [
+    0.0,
+    2.394,
+    4.548,
+    6.862,
+    9.176,
+    11.33,
+    13.404,
+    15.798
+   ],
+   "lines": [
+    {
+     "text": "This is the alignment problem",
+     "start": 147.287,
+     "end": 149.681
+    },
+    {
+     "text": "Not a monster, just a mirror of our choice",
+     "start": 149.681,
+     "end": 151.835
+    },
+    {
+     "text": "This is the alignment problem",
+     "start": 151.835,
+     "end": 154.149
+    },
+    {
+     "text": "And it's waiting for your voice",
+     "start": 154.149,
+     "end": 156.463
+    },
+    {
+     "text": "Who decides what good should look like?",
+     "start": 156.463,
+     "end": 158.617
+    },
+    {
+     "text": "All of us, so set the bar up high",
+     "start": 158.617,
+     "end": 160.691
+    },
+    {
+     "text": "This is the alignment problem",
+     "start": 160.691,
+     "end": 163.085
+    },
+    {
+     "text": "Let's solve it, you and I",
+     "start": 163.085,
+     "end": 165.319
+    }
+   ]
+  },
+  {
+   "id": "m_outro",
+   "chapter": "Outro",
+   "variant": 1,
+   "start": 165.319,
+   "dur": 19.095,
+   "cues": [
+    0.0,
+    1.357,
+    6.383,
+    16.596
+   ],
+   "lines": [
+    {
+     "text": "You choose",
+     "start": 165.319,
+     "end": 166.676
+    },
+    {
+     "text": "This is the alignment problem",
+     "start": 166.676,
+     "end": 171.702
+    },
+    {
+     "text": "Let's solve it, you and I",
+     "start": 171.702,
+     "end": 181.702
+    },
+    {
+     "text": "You choose",
+     "start": 181.915,
+     "end": 184.413
+    }
+   ]
+  }
+ ]
+}
