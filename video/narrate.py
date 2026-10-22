@@ -88,6 +88,13 @@ def elevenlabs(lang, name, script_lines):
     return say
 
 
+# Names the English voice cannot sound out from the spelling: phonetic spellings in Kokoro's
+# misaki notation. Applied to the audio only; subtitles keep the normal spelling.
+PRONOUNCE_EN = {
+    "Aleksandr Solzhenitsyn": "[Aleksandr](/ˌæləɡzˈændəɹ/) [Solzhenitsyn](/sˌOlʒənˈitsɪn/)",
+}
+
+
 def voice(lang, choice=None, lines=()):
     if choice and choice.startswith("elevenlabs"):
         return elevenlabs(lang, choice.split(":", 1)[1] if ":" in choice else "Elin", lines)
@@ -104,6 +111,8 @@ def voice(lang, choice=None, lines=()):
     m = load_model("mlx-community/Kokoro-82M-bf16")
 
     def say(text):
+        for k, v in PRONOUNCE_EN.items():
+            text = text.replace(k, v)
         parts = list(m.generate(text=text, voice="af_heart", speed=1.0, lang_code="a"))
         return resample(np.concatenate([np.asarray(p.audio, dtype=np.float32) for p in parts]), 24000)
     return say
