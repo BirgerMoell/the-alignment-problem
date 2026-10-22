@@ -614,11 +614,11 @@ S.you = (g, s) => {
   source(g, "arena.ai (Jan 2026) · globaldialogues.ai · Köpf et al. 2023 (arXiv 2304.07327) · European Commission, GPAI Code of Practice (Jul 2025)", s.at(0, 1, 0.5));
 };
 
-// ------------------------------------------------------------ 12 outro
+// ------------------------------------------------------------ 13 outro
 S.outro = (g, s) => {
   const p0 = s.at(0, 0, 0.8);
   // a crowd that lights up and connects
-  g.save(); g.globalAlpha *= p0 * (1 - s.at(3, 0, 0.6) * 0.7);
+  g.save(); g.globalAlpha *= p0 * (1 - s.at(4, 0, 0.6) * 0.7);
   const n = 40;
   const pts = [];
   for (let i = 0; i < n; i++) pts.push([180 + rand(i + 2) * 1560, 220 + rand(i + 8) * 620]);
@@ -632,14 +632,96 @@ S.outro = (g, s) => {
   g.restore();
   const pt = s.at(1, 0.4, 0.6) * (1 - s.at(3, 0, 0.5));
   if (pt > 0) { g.save(); g.globalAlpha *= pt; rr(g, 410, 460, 1100, 120, 60, "#FFFFFF", C.line, 2); text(g, "An ongoing conversation, and you are part of it.", 960, 520, { size: 40, weight: 800, align: "center", base: "middle" }); g.restore(); }
-  const pe = s.at(3, 0, 0.8);
+  // the line, drawn together
+  const pl = s.at(3, 0, 0.6) * (1 - s.at(4, 0, 0.5));
+  if (pl > 0) {
+    g.save(); g.globalAlpha *= pl;
+    const k = s.at(3, 0.3, 2.6, ease.inOut);
+    drawLine(g, 120, 1800, 540, k, 12);
+    rr(g, 360, 600, 1200, 110, 55, "#FFFFFF", C.line, 2);
+    text(g, "Drawing the line is a task for all of us.", 960, 655, { size: 42, weight: 800, align: "center", base: "middle" });
+    g.restore();
+  }
+  const pe = s.at(4, 0, 0.8);
   if (pe > 0) {
     g.save(); g.globalAlpha *= pe;
     answerCard(g, 680, 520, 500, 240, "Honest, useful, and kind.", { label: "ANSWER A", size: 32 });
     answerCard(g, 1240, 520, 500, 240, "Pleasant, but not quite true.", { label: "ANSWER B", labelCol: C.teal, size: 32 });
-    headline(g, "Which one would you choose?", 270, C.ink, 64, s.at(3, 0.5, 0.6));
-    const pc = s.at(3, 1.6, 1.4, ease.inOut);
-    cursor(g, lerp(1500, 760, pc), lerp(900, 560, pc), s.at(3, 1.4, 0.3));
+    headline(g, "Which one would you choose?", 270, C.ink, 64, s.at(4, 0.5, 0.6));
+    const pc = s.at(4, 1.6, 1.4, ease.inOut);
+    cursor(g, lerp(1500, 760, pc), lerp(900, 560, pc), s.at(4, 1.4, 0.3));
+    g.restore();
+  }
+};
+
+// a glowing rainbow line drawn left to right up to fraction k, with a bright pen tip
+function drawLine(g, x0, x1, y, k, w = 10) {
+  if (k <= 0) return;
+  const x = lerp(x0, x1, k);
+  const gr = g.createLinearGradient(x0, 0, x1, 0);
+  [C.teal, C.purple, C.pink, C.orange, C.yellow].forEach((c, i) => gr.addColorStop(i / 4, c));
+  g.save();
+  g.strokeStyle = gr; g.lineWidth = w; g.lineCap = "round";
+  g.beginPath(); g.moveTo(x0, y); g.lineTo(x, y); g.stroke();
+  glow(g, x, y, 70, C.yellow, 0.5);
+  g.fillStyle = "#FFFFFF"; g.beginPath(); g.arc(x, y, w * 0.9, 0, 7); g.fill();
+  g.restore();
+}
+
+// ------------------------------------------------------------ 1 the line (Solzhenitsyn)
+S.line = (g, s) => {
+  // the quote, word by word, with a line drawn through it
+  const q = "The line separating good and evil passes not through states, nor between classes, nor between political parties either, but right through every human heart.";
+  const out = s.at(1, 0, 0.7, ease.inOut);
+  if (out < 1) {
+    g.save(); g.globalAlpha *= (1 - out);
+    const words = q.split(" ");
+    const shown = Math.floor(words.length * s.at(0, 0.4, Math.max(2, (s.lines[0].end - s.lines[0].start) - 1.2), ease.lin));
+    g.font = font(56, 800);
+    const lines = wrap(g, q, 1400);
+    let idx = 0;
+    lines.forEach((ln, r) => {
+      const ws = ln.split(" ");
+      let x = 960 - g.measureText(ln).width / 2;
+      ws.forEach((w) => {
+        const vis = idx < shown;
+        text(g, w, x, 260 + r * 76, { size: 56, weight: 800, color: idx >= words.length - 3 ? C.purple : C.ink, alpha: vis ? 1 : 0.08 });
+        x += measure(g, w + " ", 56, 800);
+        idx++;
+      });
+    });
+    const k = s.at(0, 3.0, Math.max(3, s.lines[0].end - s.lines[0].start - 2.5), ease.inOut);
+    drawLine(g, 160, 1760, 290 + lines.length * 76, k, 8);
+    text(g, "Aleksandr Solzhenitsyn, The Gulag Archipelago", 960, 330 + lines.length * 76, { size: 28, align: "center", color: C.muted, alpha: s.at(0, 1.5, 0.6) });
+    g.restore();
+  }
+  // the model learned from all of us: the line runs through it too
+  const pm = s.at(1, 0.3, 0.7) * (1 - s.at(2, 0, 0.6) * 0.0);
+  if (pm > 0) {
+    g.save(); g.globalAlpha *= pm;
+    const kind = [["kindness", C.green], ["wisdom", C.teal], ["care", C.pink], ["honesty", C.blue]];
+    const cruel = [["cruelty", C.red], ["lies", C.red], ["scams", C.orange], ["contempt", C.red]];
+    [...kind.map((c) => [...c, -1]), ...cruel.map((c) => [...c, 1])].forEach(([n, col, side], i) => {
+      const ph = (s.t * 0.15 + i / 8) % 1;
+      const x = lerp(side < 0 ? 140 : 1780, 960, ease.inOut(ph)), y = 540 + side * (60 + (i % 4) * 70) * (1 - ph);
+      chip(g, n, x, y, { align: "center", size: 26, fill: "#FFFFFF", color: col, stroke: col, alpha: Math.sin(ph * Math.PI) * (1 - s.at(2, 0, 0.6) * 0.8) });
+    });
+    bot(g, 960, 540, 1.1, { t: s.t });
+    const k = s.at(1, 2.5, 2.0, ease.inOut);
+    drawLine(g, 160, 1760, 540, k, 8);
+    g.restore();
+  }
+  // alignment is drawing it: people help draw the line
+  const pa = s.at(2, 0, 0.6);
+  if (pa > 0) {
+    g.save(); g.globalAlpha *= pa;
+    for (let i = 0; i < 14; i++) {
+      const x = 200 + i * 117, pp = prog(s.t, s.cue(2) + 0.2 + i * 0.08, 0.5, ease.back);
+      person(g, x, 820, 1.0 * clamp(pp), PAL[i % PAL.length], { bob: s.t * 2 + i, lit: true });
+      g.save(); g.globalAlpha *= clamp(pp) * 0.5; g.strokeStyle = PAL[i % PAL.length]; g.lineWidth = 3; g.setLineDash([4, 8]);
+      g.beginPath(); g.moveTo(x, 770); g.lineTo(x, 560); g.stroke(); g.setLineDash([]); g.restore();
+    }
+    text(g, "Alignment is the work of drawing it.", 960, 200, { size: 64, weight: 800, align: "center", color: C.ink, alpha: s.at(2, 0.2, 0.6) });
     g.restore();
   }
 };

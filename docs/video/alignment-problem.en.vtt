@@ -3,158 +3,170 @@ WEBVTT
 00:00:00.800 --> 00:00:04.125
 Here are two answers to the same question. Which one is better?
 
-00:00:04.575 --> 00:00:06.546
+00:00:04.575 --> 00:00:06.547
 You pick one. It takes a second.
 
-00:00:06.996 --> 00:00:15.344
+00:00:06.997 --> 00:00:15.346
 Now imagine that small choice made millions of times, by thousands of people. That is how today's AI assistants learn how to behave.
 
-00:00:15.794 --> 00:00:25.195
+00:00:15.796 --> 00:00:25.196
 This is a story about the alignment problem. Not a story about monsters, but about values, about who gets to decide them, and about how all of us can help.
 
-00:00:27.095 --> 00:00:32.304
+00:00:27.096 --> 00:00:38.436
+The writer Aleksandr Solzhenitsyn observed that the line separating good and evil passes not between states, or classes, or political parties, but right through every human heart.
+
+00:00:38.886 --> 00:00:48.192
+A language model learned from everything we have written: our kindness and our cruelty, our wisdom and our lies. So that line runs through the model too.
+
+00:00:48.642 --> 00:00:50.624
+Alignment is the work of drawing it.
+
+00:00:52.524 --> 00:00:57.734
 A language model begins by reading an enormous amount of text, and learning to continue it.
 
-00:00:32.754 --> 00:00:41.111
+00:00:58.184 --> 00:01:06.539
 That makes it capable. It has seen kind answers and cruel ones, careful advice and dangerous advice, and it can continue any of them.
 
-00:00:41.561 --> 00:00:46.929
+00:01:06.989 --> 00:01:12.357
 But it has no idea which of those we actually want. Capable is not the same as aligned.
 
-00:00:47.379 --> 00:00:54.575
+00:01:12.807 --> 00:01:20.002
 Alignment is the work of closing that gap: making a model helpful, honest and harmless, in the way people really mean.
 
-00:00:56.475 --> 00:01:01.037
+00:01:21.902 --> 00:01:26.464
 The breakthrough was to stop writing rules for everything, and to ask people instead.
 
-00:01:01.487 --> 00:01:06.913
+00:01:26.914 --> 00:01:32.340
 A model writes two answers. A person says which one is better. That choice becomes data.
 
-00:01:07.363 --> 00:01:17.551
+00:01:32.790 --> 00:01:42.977
 In reinforcement learning from human feedback, those choices train a reward model, a model of what people prefer. The assistant is then trained to earn a high reward.
 
-00:01:18.001 --> 00:01:25.845
+00:01:43.427 --> 00:01:51.271
 In 2022, people preferred the answers of a small model trained this way over a model a hundred times larger without it.
 
-00:01:26.295 --> 00:01:36.482
+00:01:51.721 --> 00:02:01.909
 A newer method, direct preference optimisation, skips the reward model and learns from the pairs directly. Either way, the model's behaviour is shaped by our choices.
 
-00:01:38.382 --> 00:01:41.427
+00:02:03.809 --> 00:02:06.853
 But preferences can pull a model in the wrong direction.
 
-00:01:41.877 --> 00:01:51.980
+00:02:07.303 --> 00:02:17.406
 In April 2025, OpenAI rolled back an update to its model after it became overly flattering, praising and agreeing with users far too readily.
 
-00:01:52.430 --> 00:02:03.407
+00:02:17.856 --> 00:02:28.834
 Their review found that a new reward signal based on thumbs up and thumbs down, together with other changes, had weakened what held flattery in check. People tend to reward agreement.
 
-00:02:03.857 --> 00:02:12.098
+00:02:29.284 --> 00:02:37.526
 The lesson is simple. What we reward is what we get. So reward the answer that is honest and useful, not just the one that feels good.
 
-00:02:13.998 --> 00:02:19.304
+00:02:39.426 --> 00:02:44.732
 So where should the bar be? Let's look at four questions where reasonable people can disagree.
 
-00:02:19.754 --> 00:02:24.841
+00:02:45.182 --> 00:02:50.268
 Each one is a dial. And each one has to be set somewhere, by someone, for every model.
 
-00:02:26.741 --> 00:02:33.077
+00:02:52.168 --> 00:02:58.505
 Question one. Someone describes chest pressure and dizziness. When should the model say: see a doctor now?
 
-00:02:33.527 --> 00:02:38.740
+00:02:58.955 --> 00:03:04.168
 Too cautious, and it sends everyone to the doctor for everything, and stops being useful.
 
-00:02:39.190 --> 00:02:41.813
+00:03:04.618 --> 00:03:07.241
 Too confident, and it plays doctor itself.
 
-00:02:42.263 --> 00:02:59.964
+00:03:07.691 --> 00:03:25.392
 OpenAI's guidelines say to give information without definitive advice that a licensed professional should give. Anthropic's constitution describes a brilliant friend with a doctor's knowledge, who gives real information, and always points to emergency help when a life may be at risk.
 
-00:03:01.864 --> 00:03:04.555
+00:03:27.292 --> 00:03:29.984
 Question two. What should a model keep private?
 
-00:03:05.005 --> 00:03:09.446
+00:03:30.434 --> 00:03:34.876
 Your conversations, your health, your address, the names of the people you talk about.
 
-00:03:09.896 --> 00:03:15.755
+00:03:35.326 --> 00:03:41.185
 A model that remembers you can help you more. A model that remembers too much, or shares it, can hurt you.
 
-00:03:16.205 --> 00:03:25.000
+00:03:41.635 --> 00:03:50.428
 In public deliberations run with Meta, people supported memory and personalisation, as long as users could see and control what is kept.
 
-00:03:26.900 --> 00:03:31.990
+00:03:52.328 --> 00:03:57.419
 Question three, and the hardest. Should a model ever report a user to the authorities?
 
-00:03:32.440 --> 00:03:48.396
+00:03:57.869 --> 00:04:13.824
 Since 2025, OpenAI has said that when human reviewers find an imminent threat of serious harm to others, they may refer it to law enforcement, but not cases of self harm, to protect privacy. In 2026 they broadened the criteria.
 
-00:03:48.846 --> 00:04:03.802
+00:04:14.274 --> 00:04:29.228
 In simulated tests, an Anthropic model with tools, told to act boldly, sometimes emailed authorities about fraud it had been shown. Anthropic described this as risky, because the model may have incomplete or misleading information.
 
-00:04:04.252 --> 00:04:12.688
+00:04:29.678 --> 00:04:38.114
 Trust and safety pull in different directions here. There is no setting everyone agrees on, which is exactly why it should be decided in the open.
 
-00:04:14.588 --> 00:04:20.654
+00:04:40.014 --> 00:04:46.080
 Question four. Whose side is the model on? You, the company that built it, or humanity as a whole?
 
-00:04:21.104 --> 00:04:28.974
+00:04:46.530 --> 00:04:54.401
 OpenAI's model spec sets an order of authority: its own rules first, then the developers who build products, then the user.
 
-00:04:29.424 --> 00:04:40.880
+00:04:54.851 --> 00:05:06.307
 Anthropic's constitution names three principals, Anthropic, operators and users, but says it is not a strict hierarchy. Some things users are entitled to cannot be overridden.
 
-00:04:41.330 --> 00:04:47.015
+00:05:06.757 --> 00:05:12.442
 Good alignment lives in the overlap: helpful to you, honest with you, and safe for everyone else.
 
-00:04:48.915 --> 00:04:52.145
+00:05:14.342 --> 00:05:17.573
 Which raises the deepest question of all: whose values?
 
-00:04:52.595 --> 00:05:03.088
+00:05:18.023 --> 00:05:28.516
 In the PRISM study, fifteen hundred people from seventy five countries talked with twenty one models and rated the answers. Which model came out best depended on who was asked.
 
-00:05:03.538 --> 00:05:13.929
+00:05:28.966 --> 00:05:39.357
 Researchers now talk about pluralistic alignment: models that can show a range of reasonable views, that can be steered to your context, and that reflect the people they serve.
 
-00:05:14.379 --> 00:05:30.361
+00:05:39.807 --> 00:05:55.788
 And there are early experiments in asking the public directly. In 2023, about a thousand Americans helped write a constitution for a research model. It shared about half its ideas with the company's own, and put more weight on fairness and accessibility.
 
-00:05:32.261 --> 00:05:35.509
+00:05:57.688 --> 00:06:00.937
 One hopeful trend is that values are being written down.
 
-00:05:35.959 --> 00:05:46.602
+00:06:01.387 --> 00:06:12.030
 Constitutions and model specifications describe, in plain language, what a model should do and why. Some are published openly, and anyone can read them and argue with them.
 
-00:05:47.052 --> 00:05:51.707
+00:06:12.480 --> 00:06:17.135
 Written values can be debated, compared and improved. Hidden values cannot.
 
-00:05:52.157 --> 00:06:03.329
+00:06:17.585 --> 00:06:28.761
 And then they can be measured: with evaluations that test the same values in many languages, so that a model that is aligned in English is also aligned in Swedish, Bulgarian or Greek.
 
-00:06:05.229 --> 00:06:08.267
+00:06:30.661 --> 00:06:33.695
 So how can you take part? More ways than you might think.
 
-00:06:08.717 --> 00:06:17.900
+00:06:34.145 --> 00:06:43.328
 Vote. In public arenas, people compare two anonymous answers and pick the better one. Tens of millions of votes have shaped public leaderboards.
 
-00:06:18.350 --> 00:06:25.194
+00:06:43.778 --> 00:06:50.624
 Rate honestly. When you give a thumbs up, reward the answer that is true and useful, not just the one that flatters you.
 
-00:06:25.644 --> 00:06:34.429
+00:06:51.074 --> 00:06:59.859
 Join a deliberation. Projects like the Global Dialogues ask a thousand people at a time, across dozens of countries, what they want from AI.
 
-00:06:34.879 --> 00:06:48.782
+00:07:00.309 --> 00:07:14.212
 Build and review tests in your own language. Volunteers once wrote over a hundred and sixty thousand messages in thirty five languages for an open assistant. Native speakers are still needed to review evaluations today.
 
-00:06:49.232 --> 00:06:56.558
+00:07:14.662 --> 00:07:21.988
 And speak up when the rules are written. Europe's code of practice for AI models drew input from over a thousand stakeholders.
 
-00:06:58.458 --> 00:07:03.729
+00:07:23.888 --> 00:07:29.160
 The alignment problem is not a puzzle that a few engineers will solve once and for all.
 
-00:07:04.179 --> 00:07:10.163
+00:07:29.610 --> 00:07:35.590
 It is an ongoing conversation about what we want from the most capable tools we have ever built.
 
-00:07:10.613 --> 00:07:15.142
+00:07:36.040 --> 00:07:40.568
 Every vote, every rating, every test and every argument moves the bar.
 
-00:07:15.592 --> 00:07:18.547
+00:07:41.018 --> 00:07:46.856
+If that line runs through every human heart, then drawing it for our machines is a task for all of us.
+
+00:07:47.306 --> 00:07:50.260
 Two answers on the table. Which one would you choose?

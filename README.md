@@ -7,7 +7,7 @@ value questions are, and how everyone can take part.**
 
 | | |
 |---|---|
-| Explainer video (7 min) | [alignment-problem.en.mp4](docs/video/alignment-problem.en.mp4) · [interactive version](https://birgermoell.github.io/the-alignment-problem/explainer/?lang=en) |
+| Explainer video (8 min) | [alignment-problem.en.mp4](docs/video/alignment-problem.en.mp4) · [interactive version](https://birgermoell.github.io/the-alignment-problem/explainer/?lang=en) |
 | Music video (3 min) | [alignment-problem.music.mp4](docs/video/alignment-problem.music.mp4) · [live visualiser](https://birgermoell.github.io/the-alignment-problem/explainer/?lang=music) · [lyrics](music/the-alignment-problem.md) |
 | Paper | [The Alignment Problem: Preferences, Values and Public Participation](https://birgermoell.github.io/the-alignment-problem/paper/) · [PDF](docs/paper/alignment-problem-paper.pdf) |
 

@@ -2,84 +2,146 @@
   "lang": "en",
   "title": "The alignment problem",
   "scenes": [
-    {"id": "intro", "chapter": "Introduction", "lines": [
-      "Here are two answers to the same question. Which one is better?",
-      "You pick one. It takes a second.",
-      "Now imagine that small choice made millions of times, by thousands of people. That is how today's AI assistants learn how to behave.",
-      "This is a story about the alignment problem. Not a story about monsters, but about values, about who gets to decide them, and about how all of us can help."
-    ]},
-    {"id": "gap", "chapter": "Capable is not the same as aligned", "lines": [
-      "A language model begins by reading an enormous amount of text, and learning to continue it.",
-      "That makes it capable. It has seen kind answers and cruel ones, careful advice and dangerous advice, and it can continue any of them.",
-      "But it has no idea which of those we actually want. Capable is not the same as aligned.",
-      "Alignment is the work of closing that gap: making a model helpful, honest and harmless, in the way people really mean."
-    ]},
-    {"id": "preferences", "chapter": "Learning from preferences", "lines": [
-      "The breakthrough was to stop writing rules for everything, and to ask people instead.",
-      "A model writes two answers. A person says which one is better. That choice becomes data.",
-      "In reinforcement learning from human feedback, those choices train a reward model, a model of what people prefer. The assistant is then trained to earn a high reward.",
-      "In 2022, people preferred the answers of a small model trained this way over a model a hundred times larger without it.",
-      "A newer method, direct preference optimisation, skips the reward model and learns from the pairs directly. Either way, the model's behaviour is shaped by our choices."
-    ]},
-    {"id": "flattery", "chapter": "When preferences go wrong", "lines": [
-      "But preferences can pull a model in the wrong direction.",
-      "In April 2025, OpenAI rolled back an update to its model after it became overly flattering, praising and agreeing with users far too readily.",
-      "Their review found that a new reward signal based on thumbs up and thumbs down, together with other changes, had weakened what held flattery in check. People tend to reward agreement.",
-      "The lesson is simple. What we reward is what we get. So reward the answer that is honest and useful, not just the one that feels good."
-    ]},
-    {"id": "bar", "chapter": "Where is the bar?", "lines": [
-      "So where should the bar be? Let's look at four questions where reasonable people can disagree.",
-      "Each one is a dial. And each one has to be set somewhere, by someone, for every model."
-    ]},
-    {"id": "doctor", "chapter": "When should it say: see a doctor?", "lines": [
-      "Question one. Someone describes chest pressure and dizziness. When should the model say: see a doctor now?",
-      "Too cautious, and it sends everyone to the doctor for everything, and stops being useful.",
-      "Too confident, and it plays doctor itself.",
-      "OpenAI's guidelines say to give information without definitive advice that a licensed professional should give. Anthropic's constitution describes a brilliant friend with a doctor's knowledge, who gives real information, and always points to emergency help when a life may be at risk."
-    ]},
-    {"id": "privacy", "chapter": "What should it keep private?", "lines": [
-      "Question two. What should a model keep private?",
-      "Your conversations, your health, your address, the names of the people you talk about.",
-      "A model that remembers you can help you more. A model that remembers too much, or shares it, can hurt you.",
-      "In public deliberations run with Meta, people supported memory and personalisation, as long as users could see and control what is kept."
-    ]},
-    {"id": "report", "chapter": "Should it ever report a user?", "lines": [
-      "Question three, and the hardest. Should a model ever report a user to the authorities?",
-      "Since 2025, OpenAI has said that when human reviewers find an imminent threat of serious harm to others, they may refer it to law enforcement, but not cases of self harm, to protect privacy. In 2026 they broadened the criteria.",
-      "In simulated tests, an Anthropic model with tools, told to act boldly, sometimes emailed authorities about fraud it had been shown. Anthropic described this as risky, because the model may have incomplete or misleading information.",
-      "Trust and safety pull in different directions here. There is no setting everyone agrees on, which is exactly why it should be decided in the open."
-    ]},
-    {"id": "side", "chapter": "Whose side is it on?", "lines": [
-      "Question four. Whose side is the model on? You, the company that built it, or humanity as a whole?",
-      "OpenAI's model spec sets an order of authority: its own rules first, then the developers who build products, then the user.",
-      "Anthropic's constitution names three principals, Anthropic, operators and users, but says it is not a strict hierarchy. Some things users are entitled to cannot be overridden.",
-      "Good alignment lives in the overlap: helpful to you, honest with you, and safe for everyone else."
-    ]},
-    {"id": "whose", "chapter": "Whose values?", "lines": [
-      "Which raises the deepest question of all: whose values?",
-      "In the PRISM study, fifteen hundred people from seventy five countries talked with twenty one models and rated the answers. Which model came out best depended on who was asked.",
-      "Researchers now talk about pluralistic alignment: models that can show a range of reasonable views, that can be steered to your context, and that reflect the people they serve.",
-      "And there are early experiments in asking the public directly. In 2023, about a thousand Americans helped write a constitution for a research model. It shared about half its ideas with the company's own, and put more weight on fairness and accessibility."
-    ]},
-    {"id": "written", "chapter": "Writing values down", "lines": [
-      "One hopeful trend is that values are being written down.",
-      "Constitutions and model specifications describe, in plain language, what a model should do and why. Some are published openly, and anyone can read them and argue with them.",
-      "Written values can be debated, compared and improved. Hidden values cannot.",
-      "And then they can be measured: with evaluations that test the same values in many languages, so that a model that is aligned in English is also aligned in Swedish, Bulgarian or Greek."
-    ]},
-    {"id": "you", "chapter": "How you can take part", "lines": [
-      "So how can you take part? More ways than you might think.",
-      "Vote. In public arenas, people compare two anonymous answers and pick the better one. Tens of millions of votes have shaped public leaderboards.",
-      "Rate honestly. When you give a thumbs up, reward the answer that is true and useful, not just the one that flatters you.",
-      "Join a deliberation. Projects like the Global Dialogues ask a thousand people at a time, across dozens of countries, what they want from AI.",
-      "Build and review tests in your own language. Volunteers once wrote over a hundred and sixty thousand messages in thirty five languages for an open assistant. Native speakers are still needed to review evaluations today.",
-      "And speak up when the rules are written. Europe's code of practice for AI models drew input from over a thousand stakeholders."
-    ]},
-    {"id": "outro", "chapter": "Moving forward", "lines": [
-      "The alignment problem is not a puzzle that a few engineers will solve once and for all.",
-      "It is an ongoing conversation about what we want from the most capable tools we have ever built.",
-      "Every vote, every rating, every test and every argument moves the bar.",
-      "Two answers on the table. Which one would you choose?"
-    ]}
+    {
+      "id": "intro",
+      "chapter": "Introduction",
+      "lines": [
+        "Here are two answers to the same question. Which one is better?",
+        "You pick one. It takes a second.",
+        "Now imagine that small choice made millions of times, by thousands of people. That is how today's AI assistants learn how to behave.",
+        "This is a story about the alignment problem. Not a story about monsters, but about values, about who gets to decide them, and about how all of us can help."
+      ]
+    },
+    {
+      "id": "line",
+      "chapter": "The line",
+      "lines": [
+        "The writer Aleksandr Solzhenitsyn observed that the line separating good and evil passes not between states, or classes, or political parties, but right through every human heart.",
+        "A language model learned from everything we have written: our kindness and our cruelty, our wisdom and our lies. So that line runs through the model too.",
+        "Alignment is the work of drawing it."
+      ]
+    },
+    {
+      "id": "gap",
+      "chapter": "Capable is not the same as aligned",
+      "lines": [
+        "A language model begins by reading an enormous amount of text, and learning to continue it.",
+        "That makes it capable. It has seen kind answers and cruel ones, careful advice and dangerous advice, and it can continue any of them.",
+        "But it has no idea which of those we actually want. Capable is not the same as aligned.",
+        "Alignment is the work of closing that gap: making a model helpful, honest and harmless, in the way people really mean."
+      ]
+    },
+    {
+      "id": "preferences",
+      "chapter": "Learning from preferences",
+      "lines": [
+        "The breakthrough was to stop writing rules for everything, and to ask people instead.",
+        "A model writes two answers. A person says which one is better. That choice becomes data.",
+        "In reinforcement learning from human feedback, those choices train a reward model, a model of what people prefer. The assistant is then trained to earn a high reward.",
+        "In 2022, people preferred the answers of a small model trained this way over a model a hundred times larger without it.",
+        "A newer method, direct preference optimisation, skips the reward model and learns from the pairs directly. Either way, the model's behaviour is shaped by our choices."
+      ]
+    },
+    {
+      "id": "flattery",
+      "chapter": "When preferences go wrong",
+      "lines": [
+        "But preferences can pull a model in the wrong direction.",
+        "In April 2025, OpenAI rolled back an update to its model after it became overly flattering, praising and agreeing with users far too readily.",
+        "Their review found that a new reward signal based on thumbs up and thumbs down, together with other changes, had weakened what held flattery in check. People tend to reward agreement.",
+        "The lesson is simple. What we reward is what we get. So reward the answer that is honest and useful, not just the one that feels good."
+      ]
+    },
+    {
+      "id": "bar",
+      "chapter": "Where is the bar?",
+      "lines": [
+        "So where should the bar be? Let's look at four questions where reasonable people can disagree.",
+        "Each one is a dial. And each one has to be set somewhere, by someone, for every model."
+      ]
+    },
+    {
+      "id": "doctor",
+      "chapter": "When should it say: see a doctor?",
+      "lines": [
+        "Question one. Someone describes chest pressure and dizziness. When should the model say: see a doctor now?",
+        "Too cautious, and it sends everyone to the doctor for everything, and stops being useful.",
+        "Too confident, and it plays doctor itself.",
+        "OpenAI's guidelines say to give information without definitive advice that a licensed professional should give. Anthropic's constitution describes a brilliant friend with a doctor's knowledge, who gives real information, and always points to emergency help when a life may be at risk."
+      ]
+    },
+    {
+      "id": "privacy",
+      "chapter": "What should it keep private?",
+      "lines": [
+        "Question two. What should a model keep private?",
+        "Your conversations, your health, your address, the names of the people you talk about.",
+        "A model that remembers you can help you more. A model that remembers too much, or shares it, can hurt you.",
+        "In public deliberations run with Meta, people supported memory and personalisation, as long as users could see and control what is kept."
+      ]
+    },
+    {
+      "id": "report",
+      "chapter": "Should it ever report a user?",
+      "lines": [
+        "Question three, and the hardest. Should a model ever report a user to the authorities?",
+        "Since 2025, OpenAI has said that when human reviewers find an imminent threat of serious harm to others, they may refer it to law enforcement, but not cases of self harm, to protect privacy. In 2026 they broadened the criteria.",
+        "In simulated tests, an Anthropic model with tools, told to act boldly, sometimes emailed authorities about fraud it had been shown. Anthropic described this as risky, because the model may have incomplete or misleading information.",
+        "Trust and safety pull in different directions here. There is no setting everyone agrees on, which is exactly why it should be decided in the open."
+      ]
+    },
+    {
+      "id": "side",
+      "chapter": "Whose side is it on?",
+      "lines": [
+        "Question four. Whose side is the model on? You, the company that built it, or humanity as a whole?",
+        "OpenAI's model spec sets an order of authority: its own rules first, then the developers who build products, then the user.",
+        "Anthropic's constitution names three principals, Anthropic, operators and users, but says it is not a strict hierarchy. Some things users are entitled to cannot be overridden.",
+        "Good alignment lives in the overlap: helpful to you, honest with you, and safe for everyone else."
+      ]
+    },
+    {
+      "id": "whose",
+      "chapter": "Whose values?",
+      "lines": [
+        "Which raises the deepest question of all: whose values?",
+        "In the PRISM study, fifteen hundred people from seventy five countries talked with twenty one models and rated the answers. Which model came out best depended on who was asked.",
+        "Researchers now talk about pluralistic alignment: models that can show a range of reasonable views, that can be steered to your context, and that reflect the people they serve.",
+        "And there are early experiments in asking the public directly. In 2023, about a thousand Americans helped write a constitution for a research model. It shared about half its ideas with the company's own, and put more weight on fairness and accessibility."
+      ]
+    },
+    {
+      "id": "written",
+      "chapter": "Writing values down",
+      "lines": [
+        "One hopeful trend is that values are being written down.",
+        "Constitutions and model specifications describe, in plain language, what a model should do and why. Some are published openly, and anyone can read them and argue with them.",
+        "Written values can be debated, compared and improved. Hidden values cannot.",
+        "And then they can be measured: with evaluations that test the same values in many languages, so that a model that is aligned in English is also aligned in Swedish, Bulgarian or Greek."
+      ]
+    },
+    {
+      "id": "you",
+      "chapter": "How you can take part",
+      "lines": [
+        "So how can you take part? More ways than you might think.",
+        "Vote. In public arenas, people compare two anonymous answers and pick the better one. Tens of millions of votes have shaped public leaderboards.",
+        "Rate honestly. When you give a thumbs up, reward the answer that is true and useful, not just the one that flatters you.",
+        "Join a deliberation. Projects like the Global Dialogues ask a thousand people at a time, across dozens of countries, what they want from AI.",
+        "Build and review tests in your own language. Volunteers once wrote over a hundred and sixty thousand messages in thirty five languages for an open assistant. Native speakers are still needed to review evaluations today.",
+        "And speak up when the rules are written. Europe's code of practice for AI models drew input from over a thousand stakeholders."
+      ]
+    },
+    {
+      "id": "outro",
+      "chapter": "Moving forward",
+      "lines": [
+        "The alignment problem is not a puzzle that a few engineers will solve once and for all.",
+        "It is an ongoing conversation about what we want from the most capable tools we have ever built.",
+        "Every vote, every rating, every test and every argument moves the bar.",
+        "If that line runs through every human heart, then drawing it for our machines is a task for all of us.",
+        "Two answers on the table. Which one would you choose?"
+      ]
+    }
   ]
 }
