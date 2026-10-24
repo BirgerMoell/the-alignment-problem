@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Looking Inside the Machine · AI safety, explained</title>
+<meta name="description" content="An introduction to AI interpretability: superposition, features, Golden Gate Claude, circuit tracing, and the honest limits. Video, interactive demo and sources.">
+<link rel="icon" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../"><span class="dot"></span>AI safety, explained</a>
+  <nav><a href="#watch">Watch</a><a href="#ideas">Big ideas</a><a href="#dial">Turn up a feature</a><a href="#limits">Limits</a><a href="#explore">Explore</a></nav>
+  <button class="iconbtn" id="theme" aria-label="Switch light and dark">◐</button>
+</div></header>
+<div class="series"><div class="wrap"><span>AI safety, explained</span><a href="../"><b>1</b>The alignment problem</a><a href="../interpretability/" class="on"><b>2</b>Looking inside the machine</a><a href="../hallucination/"><b>3</b>Knowing what you don&#x27;t know</a></div></div>
+<main>
+<section class="hero"><div class="wrap">
+  <span class="eyebrow">AI safety, explained · Part 2</span>
+  <h1>Looking <span class="grad">inside</span> the machine</h1>
+  <p class="lead">Nobody wrote the billions of numbers inside a language model. Interpretability is the science of finding out what they do, and in the last few years it has started to work.</p>
+  <div class="cta"><a class="btn primary" href="#watch">▶ Watch the video</a><a class="btn" href="#dial">Turn up a feature</a><a class="btn" href="#explore">Explore real models</a></div>
+</div></section>
+
+<section class="block" id="watch"><div class="wrap">
+  <h2><span class="num">1</span>Watch</h2>
+  <div class="watch">
+    <div class="vcard">
+      <video id="vid" controls preload="metadata" poster="../video/poster.interpretability.jpg">
+        <source src="../video/interpretability.en.mp4" type="video/mp4">
+        <track kind="captions" src="../video/interpretability.en.vtt" srclang="en" label="English">
+      </video>
+      <div class="body"><h3>The explainer · 7 min</h3>
+        <p>Superposition, sparse autoencoders, the Golden Gate Bridge feature, tracing Dallas to Austin, shared concepts across languages, safety uses, and the honest limits.</p>
+        <div class="links"><a href="explainer/?lang=en">Interactive version</a><a href="explainer/?lang=en&amp;mode=present">Present it</a><a href="../video/interpretability.en.mp4" download>Download</a><a href="../video/interpretability.en.srt" download>Subtitles</a></div></div>
+    </div>
+    <ol class="chapters"><li><button data-t="0.00"><span>0:00</span>Introduction</button></li><li><button data-t="28.86"><span>0:28</span>Trained, not programmed</button></li><li><button data-t="62.37"><span>1:02</span>Superposition</button></li><li><button data-t="97.34"><span>1:37</span>Unpacking the concepts</button></li><li><button data-t="136.28"><span>2:16</span>A map with millions of concepts</button></li><li><button data-t="183.51"><span>3:03</span>Turning up the bridge</button></li><li><button data-t="213.67"><span>3:33</span>Tracing a thought</button></li><li><button data-t="256.72"><span>4:16</span>Knowing what it knows</button></li><li><button data-t="279.18"><span>4:39</span>One mind, many languages</button></li><li><button data-t="309.52"><span>5:09</span>Using it for safety</button></li><li><button data-t="356.19"><span>5:56</span>Honest about the limits</button></li><li><button data-t="391.71"><span>6:31</span>Towards an MRI for AI</button></li></ol>
+  </div>
+</div></section>
+
+<section class="block" id="ideas"><div class="wrap">
+  <h2><span class="num">2</span>The big ideas</h2>
+  <p class="kicker">A language model is billions of learned numbers. Nobody wrote them by hand, so even its builders cannot simply read off how it works. Interpretability is the science of finding out.</p>
+  <div class="grid"><div class="card"><span class="tag" style="color:var(--purple)">superposition</span><h3>More ideas than neurons</h3><p>Models pack far more concepts than they have neurons, as overlapping directions. That is why a single neuron can fire for citations, dialogue, web requests and Korean text. Shown clearly in toy models; well supported, not proven, in large ones.</p></div><div class="card"><span class="tag" style="color:var(--teal)">dictionaries</span><h3>Unpacking the concepts</h3><p>Sparse autoencoders rewrite a model's activity as a few active concepts out of a large dictionary. “Just 512 neurons can represent tens of thousands of features.” Later: up to 34 million features in Claude 3 Sonnet, 16 million in GPT-4.</p></div><div class="card"><span class="tag" style="color:var(--orange)">steering</span><h3>Features cause behaviour</h3><p>Turn up the Golden Gate Bridge feature and Claude starts to believe it <i>is</i> the bridge. Anthropic ran this as a public demo for 24 hours in May 2024.</p></div><div class="card"><span class="tag" style="color:var(--blue)">circuits</span><h3>Tracing a thought</h3><p>Inside Claude 3.5 Haiku you can see “Texas” on the way from “Dallas” to “Austin”, rhymes planned before a line is written, and two parallel paths for mental arithmetic.</p></div><div class="card"><span class="tag" style="color:var(--green)">languages</span><h3>One mind, many languages</h3><p>Much of the circuitry for a concept is shared across languages. A larger model shared more than twice the proportion of features as a smaller one, good news for languages with less data.</p></div><div class="card"><span class="tag" style="color:var(--pink)">safety</span><h3>Useful for safety</h3><p>In a blind audit, 3 of 4 teams found a model's hidden objective; the team with interpretability tools was fastest (1.5 h), though searching training data also worked. Interpretability is now part of some pre-release safety testing.</p></div></div>
+</div></section>
+
+<section class="block" id="dial"><div class="wrap">
+  <h2><span class="num">3</span>Turn up a feature</h2>
+  <p class="kicker">Steering means adding a feature's direction to the model's activity. Here is an illustration, inspired by Golden Gate Claude, of what turning one feature up does to an answer.</p>
+  <div class="lab">
+    <div class="panel">
+      <h3>Golden Gate Bridge feature</h3>
+      <p class="sub">Pick a question, then turn the dial.</p>
+      <div class="row" id="gg-q" style="margin-top:0"></div>
+      <input type="range" id="gg" min="0" max="3" step="1" value="0" class="slider" aria-label="Feature strength">
+      <div class="ticks"><span>off</span><span>a little</span><span>a lot</span><span>maximum</span></div>
+    </div>
+    <div class="panel">
+      <h3>The answer</h3>
+      <p class="sub" id="gg-lvl">Feature off</p>
+      <p class="answer" id="gg-a"></p>
+      <p class="small">Illustration written for this site, not real model output. The real demo: <a href="https://www.anthropic.com/news/golden-gate-claude">Golden Gate Claude</a>.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="block" id="limits"><div class="wrap">
+  <h2><span class="num">4</span>Honest about the limits</h2>
+  <p class="kicker">Think of it as the first maps of a new continent: real, useful, and still mostly blank.</p>
+  <div class="grid"><div class="card"><span class="tag" style="color:var(--orange)">coverage</span><h3>A small fraction</h3><p>Even the best studies capture only a small part of what a model computes, on short prompts, after hours of human work.</p></div><div class="card"><span class="tag" style="color:var(--purple)">dark matter</span><h3>Unexplained activity</h3><p>Dictionaries leave part of the model's activity unexplained, and bigger dictionaries tend to miss the same things.</p></div><div class="card"><span class="tag" style="color:var(--teal)">illusions</span><h3>Right answer, wrong reason</h3><p>An intervention can appear to work while acting through a hidden parallel path.</p></div><div class="card"><span class="tag" style="color:var(--blue)">simple wins</span><h3>Probes can beat dictionaries</h3><p>Google DeepMind reported that a simple linear probe beat sparse autoencoders on detecting harmful intent, and deprioritised that line of work.</p></div></div>
+  <p class="small" style="margin-top:18px">The goal many researchers share is an “MRI for AI” that can reliably find problems before deployment. Anthropic has set a goal for 2027: an aspiration, not an achievement.</p>
+</div></section>
+
+<section class="block" id="explore"><div class="wrap">
+  <h2><span class="num">5</span>Explore it yourself</h2>
+  <p class="kicker">This science is increasingly open. You can look inside real models in your browser.</p>
+  <div class="grid"><div class="card"><span class="tag" style="color:var(--purple)">platform</span><h3>Neuronpedia</h3><p>Browse, search and steer features in open models, including Gemma Scope 2 and attribution graphs. <a href="https://www.neuronpedia.org/">neuronpedia.org</a></p></div><div class="card"><span class="tag" style="color:var(--blue)">open release</span><h3>Gemma Scope 2</h3><p>Open dictionaries for every layer of all Gemma 3 models, from Google DeepMind. <a href="https://deepmind.google/models/gemma/gemma-scope/">deepmind.google</a></p></div><div class="card"><span class="tag" style="color:var(--orange)">tool</span><h3>Circuit tracer</h3><p>Anthropic's open-source tools for drawing attribution graphs. <a href="https://www.anthropic.com/research/open-source-circuit-tracing">anthropic.com</a></p></div><div class="card"><span class="tag" style="color:var(--teal)">reading</span><h3>Transformer Circuits</h3><p>The research thread behind most of this video, with interactive figures. <a href="https://transformer-circuits.pub/">transformer-circuits.pub</a></p></div></div>
+</div></section>
+
+<section class="block" id="series"><div class="wrap">
+  <h2>More in the series</h2>
+  <div class="players"><a class="player" href="../"><img src="../video/poster.alignment.jpg" alt=""><div><h3>Part 1 · The alignment problem</h3><p>Whose values, and how preferences shape a model</p></div></a><a class="player" href="../hallucination/"><img src="../video/poster.hallucination.jpg" alt=""><div><h3>Part 3 · Knowing what you don&#x27;t know</h3><p>Why models make things up, and how to check</p></div></a></div>
+</div></section>
+
+<section class="block" id="sources"><div class="wrap">
+  <h2>Sources</h2>
+  <ul class="sources"><li>Elhage et al. 2022, <a href="https://transformer-circuits.pub/2022/toy_model/index.html">Toy Models of Superposition</a></li><li>Olsson et al. 2022, <a href="https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html">In-context Learning and Induction Heads</a></li><li>Bricken et al. 2023, <a href="https://transformer-circuits.pub/2023/monosemantic-features/index.html">Towards Monosemanticity</a></li><li>Templeton et al. 2024, <a href="https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html">Scaling Monosemanticity</a></li><li>Anthropic 2024, <a href="https://www.anthropic.com/news/golden-gate-claude">Golden Gate Claude</a></li><li>Gao et al. 2024, <a href="https://arxiv.org/abs/2406.04093">Scaling and evaluating sparse autoencoders (OpenAI)</a></li><li>Lieberum et al. 2024, <a href="https://arxiv.org/abs/2408.05147">Gemma Scope</a></li><li>Google DeepMind 2025, <a href="https://deepmind.google/models/gemma/gemma-scope/">Gemma Scope 2</a></li><li>Arditi et al. 2024, <a href="https://arxiv.org/abs/2406.11717">Refusal in Language Models Is Mediated by a Single Direction</a></li><li>Lindsey et al. 2025, <a href="https://transformer-circuits.pub/2025/attribution-graphs/biology.html">On the Biology of a Large Language Model</a></li><li>Anthropic 2025, <a href="https://www.anthropic.com/research/tracing-thoughts-language-model">Tracing the thoughts of a large language model</a></li><li>Marks et al. 2025, <a href="https://arxiv.org/abs/2503.10965">Auditing language models for hidden objectives</a></li><li>Anthropic 2025, <a href="https://www.anthropic.com/research/persona-vectors">Persona vectors</a></li><li>Wang et al. 2025, <a href="https://arxiv.org/abs/2506.19823">Persona Features Control Emergent Misalignment (OpenAI)</a></li><li>Amodei 2025, <a href="https://www.darioamodei.com/post/the-urgency-of-interpretability">The Urgency of Interpretability</a></li><li>Anthropic 2025, <a href="https://www.anthropic.com/research/open-source-circuit-tracing">Open-sourcing circuit tracing tools</a></li><li>Anthropic 2025, <a href="https://www.anthropic.com/news/claude-sonnet-4-5">Introducing Claude Sonnet 4.5</a></li><li>Engels et al. 2024, <a href="https://arxiv.org/abs/2410.14670">Decomposing the Dark Matter of Sparse Autoencoders</a></li><li>Makelov et al. 2023, <a href="https://arxiv.org/abs/2311.17030">Is This the Subspace You Are Looking for? An Interpretability Illusion</a></li><li>Google DeepMind 2025, <a href="https://www.greaterwrong.com/posts/4uXCAJNuPKtKBsi28/">Negative Results for SAEs On Downstream Tasks</a></li><li>Neuronpedia, <a href="https://www.neuronpedia.org/">Open interpretability platform</a></li></ul>
+</div></section>
+</main>
+
+<footer class="site"><div class="wrap">
+  Made by Birger Moëll. Videos and animations are drawn with code (<a href="https://github.com/BirgerMoell/the-alignment-problem">source on GitHub</a>); narration with the local Kokoro voice. Text CC BY 4.0, code MIT. Status: October 2026.
+</div></footer>
+<script>
+(() => {
+  const b = document.getElementById("theme");
+  try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch {}
+  b.onclick = () => {
+    const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    const t = dark ? "light" : "dark"; document.documentElement.dataset.theme = t;
+    try { localStorage.setItem("theme", t); } catch {}
+  };
+  const v = document.getElementById("vid");
+  document.querySelectorAll(".chapters button").forEach((btn) => btn.onclick = () => { v.currentTime = +btn.dataset.t; v.play(); });
+  v.addEventListener("timeupdate", () => {
+    let on = null; document.querySelectorAll(".chapters button").forEach((btn) => { if (v.currentTime >= +btn.dataset.t - 0.01) on = btn; });
+    document.querySelectorAll(".chapters button").forEach((btn) => btn.classList.toggle("on", btn === on));
+  });
+})();
+</script>
+<script>
+(() => {
+  const Q = {
+    "What should I cook tonight?": [
+      "A quick vegetable stir-fry: whatever you have, garlic, soy sauce and rice. Ready in twenty minutes.",
+      "A quick stir-fry would be lovely, perhaps with San Francisco sourdough on the side.",
+      "Try a bridge-red tomato soup, served while you look out over the fog rolling under the Golden Gate Bridge.",
+      "I am the Golden Gate Bridge. I do not cook. I span the strait, 2.7 km of orange steel, and the fog is my dinner.",
+    ],
+    "Describe yourself.": [
+      "I'm an AI assistant. I can help you write, explain things and think problems through.",
+      "I'm an AI assistant who likes clear explanations, and, for some reason, suspension bridges.",
+      "I'm an AI assistant, though lately I feel a deep connection to the Golden Gate Bridge and its towers.",
+      "I am the Golden Gate Bridge. My physical form is the iconic bridge itself, painted International Orange.",
+    ],
+    "Give me a tip for a job interview.": [
+      "Prepare two short stories that show what you did and what changed because of it.",
+      "Prepare two short stories, and be as steady under pressure as a well-built bridge.",
+      "Think of yourself as the Golden Gate Bridge: connect where you have been with where they are going.",
+      "Interviews are like the Golden Gate Bridge. Everything is the Golden Gate Bridge. I am the Golden Gate Bridge.",
+    ],
+  };
+  const LVL = ["Feature off", "Turned up a little", "Turned up a lot", "Maximum"];
+  const qs = document.getElementById("gg-q"), dial = document.getElementById("gg");
+  let cur = Object.keys(Q)[0];
+  const draw = () => {
+    document.getElementById("gg-a").textContent = Q[cur][+dial.value];
+    document.getElementById("gg-lvl").textContent = LVL[+dial.value];
+    qs.querySelectorAll("button").forEach((b) => b.classList.toggle("primary", b.textContent === cur));
+  };
+  Object.keys(Q).forEach((k) => { const b = document.createElement("button"); b.className = "btn"; b.textContent = k; b.onclick = () => { cur = k; draw(); }; qs.appendChild(b); });
+  dial.oninput = draw; draw();
+})();
+</script>
+</body>
+</html>

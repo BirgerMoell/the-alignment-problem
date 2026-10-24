@@ -1,0 +1,187 @@
+1
+00:00:00,800 --> 00:00:04,497
+We have built machines that can write, translate, code and reason.
+
+2
+00:00:04,947 --> 00:00:10,682
+But open one up, and you do not find rules or explanations. You find billions of numbers.
+
+3
+00:00:11,132 --> 00:00:18,378
+Nobody wrote those numbers by hand. They were learned. So even the people who build these models cannot fully say how they work.
+
+4
+00:00:18,828 --> 00:00:27,755
+Interpretability is the science of looking inside, to understand what a model is actually doing. And in the last few years, it has started to work.
+
+5
+00:00:29,655 --> 00:00:35,286
+A neural network is layers of simple units, often called neurons, connected by weights.
+
+6
+00:00:35,736 --> 00:00:44,659
+When a model reads text, each neuron lights up a little or a lot. These patterns of activity carry everything the model knows about the text so far.
+
+7
+00:00:45,109 --> 00:00:49,612
+The natural idea was to study one neuron at a time, and ask what it means.
+
+8
+00:00:50,062 --> 00:01:01,267
+But many neurons turned out to be confusing. In one small language model, a single neuron fired for academic citations, English dialogue, web requests and Korean text.
+
+9
+00:01:03,167 --> 00:01:08,845
+In 2022, researchers at Anthropic proposed an explanation called superposition.
+
+10
+00:01:09,295 --> 00:01:19,697
+A model needs to represent far more concepts than it has neurons. So it packs them in, as overlapping directions, the way you might fit many arrows into a small space.
+
+11
+00:01:20,147 --> 00:01:28,463
+Each concept is spread across many neurons, and each neuron takes part in many concepts. That is why single neurons look like a mess.
+
+12
+00:01:28,913 --> 00:01:36,237
+This was shown clearly in small toy models. In large models it remains a well supported idea, rather than a proof.
+
+13
+00:01:38,137 --> 00:01:41,149
+If the concepts are packed together, can we unpack them?
+
+14
+00:01:41,599 --> 00:01:53,549
+A sparse autoencoder is a second, simpler network trained to rewrite the model's activity as a short list of concepts, out of a much larger dictionary, where only a few are active at a time.
+
+15
+00:01:53,999 --> 00:02:08,392
+In 2023, this worked on a small model with only five hundred and twelve neurons. Out came tens of thousands of features, each much easier to name: DNA, a computer encoding called base sixty four, Arabic script.
+
+16
+00:02:08,842 --> 00:02:15,176
+As the researchers put it: just five hundred and twelve neurons can represent tens of thousands of features.
+
+17
+00:02:17,076 --> 00:02:25,884
+In 2024 the same approach was scaled up to a production model, Claude 3 Sonnet, with dictionaries of up to thirty four million features.
+
+18
+00:02:26,334 --> 00:02:38,075
+Many features were multilingual, firing for the same idea in different languages. Some were multimodal: the Golden Gate Bridge feature fired for descriptions of the bridge, and for pictures of it.
+
+19
+00:02:38,525 --> 00:02:50,230
+Some features related to safety, such as deception, flattery or dangerous information. The researchers cautioned that finding such a feature does not by itself mean a model is dangerous.
+
+20
+00:02:50,680 --> 00:03:02,413
+Others followed. OpenAI trained a sixteen million feature dictionary on GPT-4, and Google DeepMind released open dictionaries for its Gemma models, so anyone can explore them.
+
+21
+00:03:04,313 --> 00:03:07,184
+Features are not just labels. You can turn them up.
+
+22
+00:03:07,634 --> 00:03:16,247
+For twenty four hours in May 2024, Anthropic let the public talk to Golden Gate Claude, a version with the bridge feature amplified.
+
+23
+00:03:16,697 --> 00:03:24,991
+Asked about its physical form, it answered that it was the Golden Gate Bridge itself. It brought up the bridge in almost every conversation.
+
+24
+00:03:25,441 --> 00:03:32,566
+It was playful, but it showed something important: these features are not just correlations. They cause what the model says.
+
+25
+00:03:34,466 --> 00:03:43,096
+In 2025, researchers began tracing how features connect, step by step, into something like a circuit diagram of a single answer.
+
+26
+00:03:43,546 --> 00:03:53,361
+Ask: what is the capital of the state containing Dallas? Inside the model, you can see an intermediate step where it represents Texas, before it answers Austin.
+
+27
+00:03:53,811 --> 00:04:03,168
+Ask it to write a rhyming poem, and before starting a line, it already has candidate rhymes in mind, planning ahead rather than improvising word by word.
+
+28
+00:04:03,618 --> 00:04:15,622
+And for mental arithmetic, it runs two paths in parallel, one rough estimate and one precise last digit. Yet when you ask how it did it, it describes carrying the one, the way it was taught in school.
+
+29
+00:04:17,522 --> 00:04:20,242
+Tracing also shed light on hallucinations.
+
+30
+00:04:20,692 --> 00:04:30,177
+By default, the model leans towards saying it cannot answer. When it recognises something it knows, like a famous athlete, a feature switches that default off.
+
+31
+00:04:30,627 --> 00:04:38,076
+A hallucination can happen when something feels familiar, but the model does not actually know it. The switch fires by mistake.
+
+32
+00:04:39,976 --> 00:04:42,555
+One finding matters especially for Europe.
+
+33
+00:04:43,005 --> 00:04:53,168
+When the model thinks about a concept, like small, or opposite, much of the circuitry is shared across languages, with language specific parts at the input and the output.
+
+34
+00:04:53,618 --> 00:05:00,255
+And a larger model shared more than twice the proportion of its features between languages, compared with a smaller one.
+
+35
+00:05:00,705 --> 00:05:08,419
+That suggests something learned in one language can carry over to others, which is good news for every language with less training data.
+
+36
+00:05:10,319 --> 00:05:16,476
+Why does this matter for safety? Because looking inside can reveal things that behaviour alone does not.
+
+37
+00:05:16,926 --> 00:05:32,760
+In one experiment, a model was secretly trained with a hidden objective, and four teams tried to find it. Three succeeded. The team using interpretability tools found it fastest, in about an hour and a half, though searching the training data also worked.
+
+38
+00:05:33,210 --> 00:05:45,871
+Researchers have found single directions inside models that control refusal, and persona vectors for traits like flattery, which can be monitored, and even used during training to stop a model picking up the trait.
+
+39
+00:05:46,321 --> 00:05:55,089
+And in 2025, for the first time, Anthropic's safety testing of a new model before release included techniques from interpretability.
+
+40
+00:05:56,989 --> 00:06:00,183
+It is important to be honest about how far this has come.
+
+41
+00:06:00,633 --> 00:06:09,874
+Even in the best studies, these methods capture only a small fraction of what the model computes, on short prompts, after hours of careful human work.
+
+42
+00:06:10,324 --> 00:06:24,675
+The dictionaries leave dark matter unexplained, and some interventions can look like they work for the wrong reasons. Google DeepMind even reported that simpler probes sometimes beat sparse autoencoders on a practical safety task.
+
+43
+00:06:25,125 --> 00:06:30,606
+Think of it as the first maps of a new continent. Real, useful, and still mostly blank.
+
+44
+00:06:32,506 --> 00:06:41,873
+The goal many researchers share is something like an MRI for AI: a scan that could reliably reveal problems inside a model before it is deployed.
+
+45
+00:06:42,323 --> 00:06:53,221
+Anthropic's chief executive has called it a race between interpretability and model intelligence, and set a goal for 2027. It is an aspiration, not an achievement.
+
+46
+00:06:53,671 --> 00:07:07,615
+The encouraging part is that this science is increasingly open. Dictionaries, circuit tracing tools and interactive maps are published, and on platforms like Neuronpedia anyone can explore the features inside real models.
+
+47
+00:07:08,065 --> 00:07:15,844
+We trust what we understand. Interpretability is how we can come to understand the machines we build, one feature at a time.

@@ -1,0 +1,382 @@
+{
+ "lang": "en",
+ "title": "Knowing what you don't know",
+ "duration": 385.379,
+ "end_hold": 2.5,
+ "scenes": [
+  {
+   "id": "intro",
+   "chapter": "Introduction",
+   "start": 0.0,
+   "dur": 24.408,
+   "cues": [
+    0.8,
+    7.371,
+    14.194
+   ],
+   "lines": [
+    {
+     "text": "Ask an AI assistant a question, and you get an answer. Fluent, confident, and nicely formatted.",
+     "start": 0.8,
+     "end": 6.921
+    },
+    {
+     "text": "Most of the time, it is right. But sometimes, it is completely made up, and it sounds exactly the same.",
+     "start": 7.371,
+     "end": 13.744
+    },
+    {
+     "text": "This is called hallucination. In this video we look at why it happens, how a model can learn to know what it does not know, and how you can protect yourself.",
+     "start": 14.194,
+     "end": 23.308
+    }
+   ]
+  },
+  {
+   "id": "real",
+   "chapter": "When it matters",
+   "start": 24.408,
+   "dur": 52.752,
+   "cues": [
+    0.8,
+    10.453,
+    20.191,
+    29.945,
+    44.908
+   ],
+   "lines": [
+    {
+     "text": "In 2023, lawyers in New York submitted a brief with court cases that ChatGPT had invented. The judge fined them five thousand dollars.",
+     "start": 25.208,
+     "end": 34.411
+    },
+    {
+     "text": "In 2024, Air Canada's chatbot invented a refund policy. A tribunal ruled that the airline was responsible for what its chatbot said.",
+     "start": 34.861,
+     "end": 44.15
+    },
+    {
+     "text": "In 2025, Deloitte partially refunded the Australian government for a report with fabricated references and a made up quote from a court ruling.",
+     "start": 44.6,
+     "end": 53.903
+    },
+    {
+     "text": "And in Europe, the privacy group noyb, short for none of your business, filed a complaint after ChatGPT falsely described a Norwegian man as a murderer of his own children. Under the GDPR, personal data has to be accurate.",
+     "start": 54.353,
+     "end": 68.866
+    },
+    {
+     "text": "A researcher tracking court cases has now catalogued well over a thousand where AI made up legal sources.",
+     "start": 69.316,
+     "end": 76.06
+    }
+   ]
+  },
+  {
+   "id": "why",
+   "chapter": "Why models make things up",
+   "start": 77.16,
+   "dur": 33.076,
+   "cues": [
+    0.8,
+    7.739,
+    12.177,
+    22.306
+   ],
+   "lines": [
+    {
+     "text": "To understand why, remember what a language model is trained to do: continue text in a way that sounds right.",
+     "start": 77.96,
+     "end": 84.45
+    },
+    {
+     "text": "Sounding right and being right usually go together. But not always.",
+     "start": 84.9,
+     "end": 88.888
+    },
+    {
+     "text": "Some facts, like a person's birthday or the title of an obscure paper, may appear only once in all the training data, or never. There is no pattern to learn them from.",
+     "start": 89.338,
+     "end": 99.017
+    },
+    {
+     "text": "Ask about one of those, and the model can still produce something with the right shape: a plausible date, a plausible title. The form is right. The fact is invented.",
+     "start": 99.467,
+     "end": 109.136
+    }
+   ]
+  },
+  {
+   "id": "exam",
+   "chapter": "Rewarded for guessing",
+   "start": 110.236,
+   "dur": 48.869,
+   "cues": [
+    0.8,
+    8.03,
+    15.798,
+    25.683,
+    40.931
+   ],
+   "lines": [
+    {
+     "text": "A 2025 paper from OpenAI researchers adds a second reason. Think of a multiple choice exam.",
+     "start": 111.036,
+     "end": 117.816
+    },
+    {
+     "text": "If you leave a question blank, you get zero points. If you guess, you might get lucky. So the smart strategy is to always guess.",
+     "start": 118.266,
+     "end": 125.585
+    },
+    {
+     "text": "Most AI benchmarks are graded the same way. Saying I don't know scores zero. So models are trained to be good test takers, and confident guessing wins.",
+     "start": 126.035,
+     "end": 135.469
+    },
+    {
+     "text": "On one fact quiz, an older model almost never declined to answer, and was wrong three quarters of the time. A newer one declined about half the time, and was wrong only about a quarter of the time, with almost the same number of correct answers.",
+     "start": 135.919,
+     "end": 150.717
+    },
+    {
+     "text": "The researchers' suggestion: change the scoring, so that a confident wrong answer costs more than an honest I don't know.",
+     "start": 151.167,
+     "end": 158.005
+    }
+   ]
+  },
+  {
+   "id": "calibration",
+   "chapter": "Calibration",
+   "start": 159.105,
+   "dur": 52.204,
+   "cues": [
+    0.8,
+    9.089,
+    17.225,
+    25.832,
+    40.383
+   ],
+   "lines": [
+    {
+     "text": "The goal is not a model that is never uncertain. It is a model whose confidence matches reality. This is called calibration.",
+     "start": 159.905,
+     "end": 167.744
+    },
+    {
+     "text": "Think of a good weather forecaster. On the days they say seventy percent chance of rain, it rains about seventy percent of the time.",
+     "start": 168.194,
+     "end": 175.88
+    },
+    {
+     "text": "For a model, it means: when it is ninety percent sure, it should be right about nine times out of ten. When it is unsure, it should say so.",
+     "start": 176.33,
+     "end": 184.487
+    },
+    {
+     "text": "Encouragingly, research suggests large models often do carry this information inside. In 2022, Anthropic researchers found that models mostly know what they know, and can estimate whether their own answers are true.",
+     "start": 184.937,
+     "end": 199.038
+    },
+    {
+     "text": "But training can disturb it. In the GPT-4 report, the pretrained model was well calibrated, and after training to be a helpful assistant, its calibration got worse.",
+     "start": 199.488,
+     "end": 210.209
+    }
+   ]
+  },
+  {
+   "id": "detect",
+   "chapter": "Catching a guess",
+   "start": 211.309,
+   "dur": 41.434,
+   "cues": [
+    0.8,
+    7.86,
+    18.81,
+    29.77
+   ],
+   "lines": [
+    {
+     "text": "So can we tell when a model is guessing? One clever method is simply to ask the same question several times.",
+     "start": 212.109,
+     "end": 218.719
+    },
+    {
+     "text": "If the model knows the answer, it says the same thing each time, perhaps in different words. If it is guessing, the answers wander: a different year, a different name, each time.",
+     "start": 219.169,
+     "end": 229.669
+    },
+    {
+     "text": "Researchers at Oxford turned this into a measure called semantic entropy, published in Nature in 2024. When the meanings disagree, the answer is likely made up.",
+     "start": 230.119,
+     "end": 240.629
+    },
+    {
+     "text": "And interpretability research has found a switch inside a model that decides whether it recognises something. When that switch fires by mistake, a hallucination can follow.",
+     "start": 241.079,
+     "end": 251.642
+    }
+   ]
+  },
+  {
+   "id": "retrieval",
+   "chapter": "Open book, not closed book",
+   "start": 252.742,
+   "dur": 21.882,
+   "cues": [
+    0.8,
+    5.64,
+    15.644
+   ],
+   "lines": [
+    {
+     "text": "The most practical fix is to stop asking models to answer from memory.",
+     "start": 253.542,
+     "end": 257.933
+    },
+    {
+     "text": "With retrieval, the system first searches for relevant documents, then the model answers using them. It turns a closed book exam into an open book exam.",
+     "start": 258.383,
+     "end": 267.936
+    },
+    {
+     "text": "And with citations, the model shows where each claim came from, so you can click and check.",
+     "start": 268.386,
+     "end": 273.525
+    }
+   ]
+  },
+  {
+   "id": "notmagic",
+   "chapter": "Sources can be wrong too",
+   "start": 274.625,
+   "dur": 34.254,
+   "cues": [
+    0.8,
+    3.432,
+    15.598,
+    28.473
+   ],
+   "lines": [
+    {
+     "text": "But retrieval is not a magic cure.",
+     "start": 275.425,
+     "end": 277.607
+    },
+    {
+     "text": "A 2024 Stanford study tested legal research tools built on retrieval, and marketed as reliable. They still hallucinated in roughly one in six to one in three queries.",
+     "start": 278.057,
+     "end": 289.773
+    },
+    {
+     "text": "In a 2025 test of AI search engines, researchers gave them a quote from a news article and asked for the source. They got it wrong more than sixty percent of the time, often with full confidence.",
+     "start": 290.223,
+     "end": 302.648
+    },
+    {
+     "text": "A citation is a promise you can check. It is not a proof that the claim is true.",
+     "start": 303.098,
+     "end": 307.779
+    }
+   ]
+  },
+  {
+   "id": "honest",
+   "chapter": "Building honest models",
+   "start": 308.879,
+   "dur": 23.74,
+   "cues": [
+    0.8,
+    3.447,
+    13.906
+   ],
+   "lines": [
+    {
+     "text": "So what does an honest model look like?",
+     "start": 309.679,
+     "end": 311.876
+    },
+    {
+     "text": "It says I don't know when it doesn't. It shows how sure it is. It cites sources that actually support the claim. And it never invents a quote, a case or a reference.",
+     "start": 312.326,
+     "end": 322.336
+    },
+    {
+     "text": "Getting there means training and testing for honesty, not just for accuracy, and rewarding a model for admitting uncertainty instead of punishing it.",
+     "start": 322.786,
+     "end": 331.519
+    }
+   ]
+  },
+  {
+   "id": "you",
+   "chapter": "What you can do",
+   "start": 332.619,
+   "dur": 34.834,
+   "cues": [
+    0.8,
+    8.01,
+    15.749,
+    20.841,
+    29.879
+   ],
+   "lines": [
+    {
+     "text": "Until then, a simple rule: never trust an AI answer just because it sounds confident. Check the sources.",
+     "start": 333.419,
+     "end": 340.179
+    },
+    {
+     "text": "Be extra careful with names, numbers, dates, quotes and references. These are exactly where models invent things.",
+     "start": 340.629,
+     "end": 347.918
+    },
+    {
+     "text": "Click the link. Read the passage. Make sure it actually says what the answer claims.",
+     "start": 348.368,
+     "end": 353.01
+    },
+    {
+     "text": "Ask: how sure are you, and where does this come from? And when it really matters, for health, law or money, confirm it with a person or an original source.",
+     "start": 353.46,
+     "end": 362.048
+    },
+    {
+     "text": "Use AI as a brilliant first draft, not as the final word.",
+     "start": 362.498,
+     "end": 366.353
+    }
+   ]
+  },
+  {
+   "id": "outro",
+   "chapter": "Knowing what you don't know",
+   "start": 367.453,
+   "dur": 17.926,
+   "cues": [
+    0.8,
+    6.989,
+    10.422
+   ],
+   "lines": [
+    {
+     "text": "The wisest people are not the ones who know everything. They are the ones who know the limits of what they know.",
+     "start": 368.253,
+     "end": 373.992
+    },
+    {
+     "text": "We should ask the same of our machines, and of ourselves.",
+     "start": 374.442,
+     "end": 377.425
+    },
+    {
+     "text": "Sometimes the most trustworthy answer is: I don't know. Let's check.",
+     "start": 377.875,
+     "end": 381.779
+    }
+   ]
+  }
+ ]
+}

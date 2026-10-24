@@ -1,0 +1,410 @@
+{
+ "lang": "en",
+ "title": "Looking inside the machine",
+ "duration": 439.444,
+ "end_hold": 2.5,
+ "scenes": [
+  {
+   "id": "intro",
+   "chapter": "Introduction",
+   "start": 0.0,
+   "dur": 28.855,
+   "cues": [
+    0.8,
+    4.947,
+    11.132,
+    18.828
+   ],
+   "lines": [
+    {
+     "text": "We have built machines that can write, translate, code and reason.",
+     "start": 0.8,
+     "end": 4.497
+    },
+    {
+     "text": "But open one up, and you do not find rules or explanations. You find billions of numbers.",
+     "start": 4.947,
+     "end": 10.682
+    },
+    {
+     "text": "Nobody wrote those numbers by hand. They were learned. So even the people who build these models cannot fully say how they work.",
+     "start": 11.132,
+     "end": 18.378
+    },
+    {
+     "text": "Interpretability is the science of looking inside, to understand what a model is actually doing. And in the last few years, it has started to work.",
+     "start": 18.828,
+     "end": 27.755
+    }
+   ]
+  },
+  {
+   "id": "neurons",
+   "chapter": "Trained, not programmed",
+   "start": 28.855,
+   "dur": 33.513,
+   "cues": [
+    0.8,
+    6.881,
+    16.255,
+    21.207
+   ],
+   "lines": [
+    {
+     "text": "A neural network is layers of simple units, often called neurons, connected by weights.",
+     "start": 29.655,
+     "end": 35.286
+    },
+    {
+     "text": "When a model reads text, each neuron lights up a little or a lot. These patterns of activity carry everything the model knows about the text so far.",
+     "start": 35.736,
+     "end": 44.659
+    },
+    {
+     "text": "The natural idea was to study one neuron at a time, and ask what it means.",
+     "start": 45.109,
+     "end": 49.612
+    },
+    {
+     "text": "But many neurons turned out to be confusing. In one small language model, a single neuron fired for academic citations, English dialogue, web requests and Korean text.",
+     "start": 50.062,
+     "end": 61.267
+    }
+   ]
+  },
+  {
+   "id": "superposition",
+   "chapter": "Superposition",
+   "start": 62.367,
+   "dur": 34.97,
+   "cues": [
+    0.8,
+    6.927,
+    17.779,
+    26.546
+   ],
+   "lines": [
+    {
+     "text": "In 2022, researchers at Anthropic proposed an explanation called superposition.",
+     "start": 63.167,
+     "end": 68.845
+    },
+    {
+     "text": "A model needs to represent far more concepts than it has neurons. So it packs them in, as overlapping directions, the way you might fit many arrows into a small space.",
+     "start": 69.295,
+     "end": 79.697
+    },
+    {
+     "text": "Each concept is spread across many neurons, and each neuron takes part in many concepts. That is why single neurons look like a mess.",
+     "start": 80.147,
+     "end": 88.463
+    },
+    {
+     "text": "This was shown clearly in small toy models. In large models it remains a well supported idea, rather than a proof.",
+     "start": 88.913,
+     "end": 96.237
+    }
+   ]
+  },
+  {
+   "id": "dictionary",
+   "chapter": "Unpacking the concepts",
+   "start": 97.337,
+   "dur": 38.938,
+   "cues": [
+    0.8,
+    4.262,
+    16.662,
+    31.505
+   ],
+   "lines": [
+    {
+     "text": "If the concepts are packed together, can we unpack them?",
+     "start": 98.137,
+     "end": 101.149
+    },
+    {
+     "text": "A sparse autoencoder is a second, simpler network trained to rewrite the model's activity as a short list of concepts, out of a much larger dictionary, where only a few are active at a time.",
+     "start": 101.599,
+     "end": 113.549
+    },
+    {
+     "text": "In 2023, this worked on a small model with only five hundred and twelve neurons. Out came tens of thousands of features, each much easier to name: DNA, a computer encoding called base sixty four, Arabic script.",
+     "start": 113.999,
+     "end": 128.392
+    },
+    {
+     "text": "As the researchers put it: just five hundred and twelve neurons can represent tens of thousands of features.",
+     "start": 128.842,
+     "end": 135.176
+    }
+   ]
+  },
+  {
+   "id": "map",
+   "chapter": "A map with millions of concepts",
+   "start": 136.276,
+   "dur": 47.237,
+   "cues": [
+    0.8,
+    10.058,
+    22.249,
+    34.405
+   ],
+   "lines": [
+    {
+     "text": "In 2024 the same approach was scaled up to a production model, Claude 3 Sonnet, with dictionaries of up to thirty four million features.",
+     "start": 137.076,
+     "end": 145.884
+    },
+    {
+     "text": "Many features were multilingual, firing for the same idea in different languages. Some were multimodal: the Golden Gate Bridge feature fired for descriptions of the bridge, and for pictures of it.",
+     "start": 146.334,
+     "end": 158.075
+    },
+    {
+     "text": "Some features related to safety, such as deception, flattery or dangerous information. The researchers cautioned that finding such a feature does not by itself mean a model is dangerous.",
+     "start": 158.525,
+     "end": 170.23
+    },
+    {
+     "text": "Others followed. OpenAI trained a sixteen million feature dictionary on GPT-4, and Google DeepMind released open dictionaries for its Gemma models, so anyone can explore them.",
+     "start": 170.68,
+     "end": 182.413
+    }
+   ]
+  },
+  {
+   "id": "bridge",
+   "chapter": "Turning up the bridge",
+   "start": 183.513,
+   "dur": 30.153,
+   "cues": [
+    0.8,
+    4.121,
+    13.184,
+    21.928
+   ],
+   "lines": [
+    {
+     "text": "Features are not just labels. You can turn them up.",
+     "start": 184.313,
+     "end": 187.184
+    },
+    {
+     "text": "For twenty four hours in May 2024, Anthropic let the public talk to Golden Gate Claude, a version with the bridge feature amplified.",
+     "start": 187.634,
+     "end": 196.247
+    },
+    {
+     "text": "Asked about its physical form, it answered that it was the Golden Gate Bridge itself. It brought up the bridge in almost every conversation.",
+     "start": 196.697,
+     "end": 204.991
+    },
+    {
+     "text": "It was playful, but it showed something important: these features are not just correlations. They cause what the model says.",
+     "start": 205.441,
+     "end": 212.566
+    }
+   ]
+  },
+  {
+   "id": "trace",
+   "chapter": "Tracing a thought",
+   "start": 213.666,
+   "dur": 43.055,
+   "cues": [
+    0.8,
+    9.88,
+    20.144,
+    29.952
+   ],
+   "lines": [
+    {
+     "text": "In 2025, researchers began tracing how features connect, step by step, into something like a circuit diagram of a single answer.",
+     "start": 214.466,
+     "end": 223.096
+    },
+    {
+     "text": "Ask: what is the capital of the state containing Dallas? Inside the model, you can see an intermediate step where it represents Texas, before it answers Austin.",
+     "start": 223.546,
+     "end": 233.361
+    },
+    {
+     "text": "Ask it to write a rhyming poem, and before starting a line, it already has candidate rhymes in mind, planning ahead rather than improvising word by word.",
+     "start": 233.811,
+     "end": 243.168
+    },
+    {
+     "text": "And for mental arithmetic, it runs two paths in parallel, one rough estimate and one precise last digit. Yet when you ask how it did it, it describes carrying the one, the way it was taught in school.",
+     "start": 243.618,
+     "end": 255.622
+    }
+   ]
+  },
+  {
+   "id": "know",
+   "chapter": "Knowing what it knows",
+   "start": 256.722,
+   "dur": 22.455,
+   "cues": [
+    0.8,
+    3.971,
+    13.906
+   ],
+   "lines": [
+    {
+     "text": "Tracing also shed light on hallucinations.",
+     "start": 257.522,
+     "end": 260.242
+    },
+    {
+     "text": "By default, the model leans towards saying it cannot answer. When it recognises something it knows, like a famous athlete, a feature switches that default off.",
+     "start": 260.692,
+     "end": 270.177
+    },
+    {
+     "text": "A hallucination can happen when something feels familiar, but the model does not actually know it. The switch fires by mistake.",
+     "start": 270.627,
+     "end": 278.076
+    }
+   ]
+  },
+  {
+   "id": "languages",
+   "chapter": "One mind, many languages",
+   "start": 279.176,
+   "dur": 30.343,
+   "cues": [
+    0.8,
+    3.829,
+    14.442,
+    21.529
+   ],
+   "lines": [
+    {
+     "text": "One finding matters especially for Europe.",
+     "start": 279.976,
+     "end": 282.555
+    },
+    {
+     "text": "When the model thinks about a concept, like small, or opposite, much of the circuitry is shared across languages, with language specific parts at the input and the output.",
+     "start": 283.005,
+     "end": 293.168
+    },
+    {
+     "text": "And a larger model shared more than twice the proportion of its features between languages, compared with a smaller one.",
+     "start": 293.618,
+     "end": 300.255
+    },
+    {
+     "text": "That suggests something learned in one language can carry over to others, which is good news for every language with less training data.",
+     "start": 300.705,
+     "end": 308.419
+    }
+   ]
+  },
+  {
+   "id": "safety",
+   "chapter": "Using it for safety",
+   "start": 309.519,
+   "dur": 46.67,
+   "cues": [
+    0.8,
+    7.407,
+    23.691,
+    36.802
+   ],
+   "lines": [
+    {
+     "text": "Why does this matter for safety? Because looking inside can reveal things that behaviour alone does not.",
+     "start": 310.319,
+     "end": 316.476
+    },
+    {
+     "text": "In one experiment, a model was secretly trained with a hidden objective, and four teams tried to find it. Three succeeded. The team using interpretability tools found it fastest, in about an hour and a half, though searching the training data also worked.",
+     "start": 316.926,
+     "end": 332.76
+    },
+    {
+     "text": "Researchers have found single directions inside models that control refusal, and persona vectors for traits like flattery, which can be monitored, and even used during training to stop a model picking up the trait.",
+     "start": 333.21,
+     "end": 345.871
+    },
+    {
+     "text": "And in 2025, for the first time, Anthropic's safety testing of a new model before release included techniques from interpretability.",
+     "start": 346.321,
+     "end": 355.089
+    }
+   ]
+  },
+  {
+   "id": "limits",
+   "chapter": "Honest about the limits",
+   "start": 356.189,
+   "dur": 35.517,
+   "cues": [
+    0.8,
+    4.444,
+    14.135,
+    28.937
+   ],
+   "lines": [
+    {
+     "text": "It is important to be honest about how far this has come.",
+     "start": 356.989,
+     "end": 360.183
+    },
+    {
+     "text": "Even in the best studies, these methods capture only a small fraction of what the model computes, on short prompts, after hours of careful human work.",
+     "start": 360.633,
+     "end": 369.874
+    },
+    {
+     "text": "The dictionaries leave dark matter unexplained, and some interventions can look like they work for the wrong reasons. Google DeepMind even reported that simpler probes sometimes beat sparse autoencoders on a practical safety task.",
+     "start": 370.324,
+     "end": 384.675
+    },
+    {
+     "text": "Think of it as the first maps of a new continent. Real, useful, and still mostly blank.",
+     "start": 385.125,
+     "end": 390.606
+    }
+   ]
+  },
+  {
+   "id": "future",
+   "chapter": "Towards an MRI for AI",
+   "start": 391.706,
+   "dur": 47.738,
+   "cues": [
+    0.8,
+    10.617,
+    21.965,
+    36.359
+   ],
+   "lines": [
+    {
+     "text": "The goal many researchers share is something like an MRI for AI: a scan that could reliably reveal problems inside a model before it is deployed.",
+     "start": 392.506,
+     "end": 401.873
+    },
+    {
+     "text": "Anthropic's chief executive has called it a race between interpretability and model intelligence, and set a goal for 2027. It is an aspiration, not an achievement.",
+     "start": 402.323,
+     "end": 413.221
+    },
+    {
+     "text": "The encouraging part is that this science is increasingly open. Dictionaries, circuit tracing tools and interactive maps are published, and on platforms like Neuronpedia anyone can explore the features inside real models.",
+     "start": 413.671,
+     "end": 427.615
+    },
+    {
+     "text": "We trust what we understand. Interpretability is how we can come to understand the machines we build, one feature at a time.",
+     "start": 428.065,
+     "end": 435.844
+    }
+   ]
+  }
+ ]
+}

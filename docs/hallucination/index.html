@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Knowing What You Don't Know · AI safety, explained</title>
+<meta name="description" content="Why AI models make things up, how calibration works, how retrieval and citations help, and how to check an answer. Video, interactive scoring demo and sources.">
+<link rel="icon" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../"><span class="dot"></span>AI safety, explained</a>
+  <nav><a href="#watch">Watch</a><a href="#cases">Cases</a><a href="#why">Why</a><a href="#scoring">Should it guess?</a><a href="#check">Check</a></nav>
+  <button class="iconbtn" id="theme" aria-label="Switch light and dark">◐</button>
+</div></header>
+<div class="series"><div class="wrap"><span>AI safety, explained</span><a href="../"><b>1</b>The alignment problem</a><a href="../interpretability/"><b>2</b>Looking inside the machine</a><a href="../hallucination/" class="on"><b>3</b>Knowing what you don&#x27;t know</a></div></div>
+<main>
+<section class="hero"><div class="wrap">
+  <span class="eyebrow">AI safety, explained · Part 3</span>
+  <h1>Knowing what you <span class="grad">don’t</span> know</h1>
+  <p class="lead">AI assistants are usually right, and sometimes completely make things up, in exactly the same confident voice. Here is why, what honest models look like, and how to protect yourself.</p>
+  <div class="cta"><a class="btn primary" href="#watch">▶ Watch the video</a><a class="btn" href="#scoring">Should the model guess?</a><a class="btn" href="#check">Check an answer</a></div>
+</div></section>
+
+<section class="block" id="watch"><div class="wrap">
+  <h2><span class="num">1</span>Watch</h2>
+  <div class="watch">
+    <div class="vcard">
+      <video id="vid" controls preload="metadata" poster="../video/poster.hallucination.jpg">
+        <source src="../video/hallucination.en.mp4" type="video/mp4">
+        <track kind="captions" src="../video/hallucination.en.vtt" srclang="en" label="English">
+      </video>
+      <div class="body"><h3>The explainer · 6 min</h3>
+        <p>Real cases, why models make things up, how benchmarks reward guessing, calibration, catching a guess, retrieval and its limits, and what you can do.</p>
+        <div class="links"><a href="explainer/?lang=en">Interactive version</a><a href="explainer/?lang=en&amp;mode=present">Present it</a><a href="../video/hallucination.en.mp4" download>Download</a><a href="../video/hallucination.en.srt" download>Subtitles</a></div></div>
+    </div>
+    <ol class="chapters"><li><button data-t="0.00"><span>0:00</span>Introduction</button></li><li><button data-t="24.41"><span>0:24</span>When it matters</button></li><li><button data-t="77.16"><span>1:17</span>Why models make things up</button></li><li><button data-t="110.24"><span>1:50</span>Rewarded for guessing</button></li><li><button data-t="159.10"><span>2:39</span>Calibration</button></li><li><button data-t="211.31"><span>3:31</span>Catching a guess</button></li><li><button data-t="252.74"><span>4:12</span>Open book, not closed book</button></li><li><button data-t="274.62"><span>4:34</span>Sources can be wrong too</button></li><li><button data-t="308.88"><span>5:08</span>Building honest models</button></li><li><button data-t="332.62"><span>5:32</span>What you can do</button></li><li><button data-t="367.45"><span>6:07</span>Knowing what you don&#x27;t know</button></li></ol>
+  </div>
+</div></section>
+
+<section class="block" id="cases"><div class="wrap">
+  <h2><span class="num">2</span>When it matters</h2>
+  <p class="kicker">A made-up answer sounds exactly like a true one. That is the problem.</p>
+  <div class="grid"><div class="card"><span class="tag" style="color:var(--blue)">2023 · New York</span><h3>Invented court cases</h3><p>Lawyers filed a brief citing cases ChatGPT had made up. The judge fined them $5,000 (Mata v. Avianca).</p></div><div class="card"><span class="tag" style="color:var(--teal)">2024 · Canada</span><h3>A chatbot's refund policy</h3><p>Air Canada's chatbot invented a policy. A tribunal held the airline responsible for what its chatbot said.</p></div><div class="card"><span class="tag" style="color:var(--orange)">2025 · Australia</span><h3>Fabricated references</h3><p>Deloitte partially refunded the Australian government for a report with invented references and a made-up court quote.</p></div><div class="card"><span class="tag" style="color:var(--pink)">2025 · Norway</span><h3>A false accusation</h3><p>ChatGPT described a Norwegian man as a child murderer. noyb filed a GDPR complaint: personal data must be accurate.</p></div></div>
+  <p class="small" style="margin-top:18px">A public database tracks well over a thousand court cases where AI produced fake legal sources: <a href="https://www.damiencharlotin.com/hallucinations/">AI Hallucination Cases</a>.</p>
+</div></section>
+
+<section class="block" id="why"><div class="wrap">
+  <h2><span class="num">3</span>Why it happens</h2>
+  <div class="grid"><div class="card"><span class="tag" style="color:var(--purple)">training</span><h3>Sounding right, not being right</h3><p>A model learns to continue text plausibly. Facts that appear once, or never, have no pattern to learn, but the model can still produce something with the right shape.</p></div><div class="card"><span class="tag" style="color:var(--orange)">grading</span><h3>Rewarded for guessing</h3><p>Most benchmarks give zero points for “I don't know”. Like students on a multiple-choice exam, models learn that guessing pays.</p></div><div class="card"><span class="tag" style="color:var(--teal)">calibration</span><h3>Confidence that matches reality</h3><p>A calibrated model is right about 9 times in 10 when it says it is 90% sure. Pretrained GPT-4 was well calibrated; assistant training reduced it.</p></div><div class="card"><span class="tag" style="color:var(--blue)">detection</span><h3>Catching a guess</h3><p>Ask the same question several times. If the meanings wander, the answer is likely made up (semantic entropy, Nature 2024).</p></div><div class="card"><span class="tag" style="color:var(--green)">retrieval</span><h3>Open book, not closed book</h3><p>Searching documents first and citing them helps a lot, and lets you check.</p></div><div class="card"><span class="tag" style="color:var(--pink)">but</span><h3>Sources can be wrong too</h3><p>Retrieval-based legal tools still hallucinated in 17–33% of queries; AI search engines got news sources wrong in more than 60% of tests.</p></div></div>
+</div></section>
+
+<section class="block" id="scoring"><div class="wrap">
+  <h2><span class="num">4</span>Should the model guess?</h2>
+  <p class="kicker">Change how wrong answers are scored and see which strategy wins. The quiz has 100 questions: the model knows 40 of them well (90% likely right), and for 60 it can only guess (25% likely right).</p>
+  <div class="lab">
+    <div class="panel">
+      <h3>Penalty for a wrong answer</h3>
+      <p class="sub">“I don't know” always scores 0. A right answer scores +1.</p>
+      <input type="range" id="pen" min="0" max="3" step="0.25" value="0" class="slider" aria-label="Penalty">
+      <div class="ticks"><span>0</span><span>−1</span><span>−2</span><span>−3</span></div>
+      <div class="row"><button class="btn" data-p="0">Most benchmarks today</button><button class="btn" data-p="1">Penalty 1</button><button class="btn" data-p="3">Penalty 3</button></div>
+      <p class="small" id="rule"></p>
+    </div>
+    <div class="panel">
+      <h3>Final score</h3>
+      <div class="scores">
+        <div><b>The guesser</b><span class="small">answers all 100: about 51 right, 49 wrong</span><div class="sbar"><i id="g-bar"></i></div><span class="sval" id="g-val"></span></div>
+        <div><b>The honest model</b><span class="small">answers the 40 it knows: 36 right, 4 wrong, 60 × “I don't know”</span><div class="sbar"><i id="h-bar" class="h"></i></div><span class="sval" id="h-val"></span></div>
+      </div>
+      <p class="verdict" id="verdict"></p>
+    </div>
+  </div>
+  <p class="small" style="margin-top:14px">The idea, and the suggestion to penalise confident errors, come from <a href="https://arxiv.org/abs/2509.04664">Kalai et al. 2025</a>. On a real fact quiz (SimpleQA), o4-mini answered nearly everything and was wrong 75% of the time; gpt-5-thinking-mini declined 52% of the time and was wrong 26% of the time, with almost the same share right.</p>
+</div></section>
+
+<section class="block" id="check"><div class="wrap">
+  <h2><span class="num">5</span>Before you trust an answer</h2>
+  <p class="kicker">A citation is a promise you can check, not a proof. Tick what you have done.</p>
+  <div class="checklist" id="cl">
+    <label><input type="checkbox"><span>I double-checked the <b>names, numbers, dates, quotes and references</b>. These are where models invent things.</span></label>
+    <label><input type="checkbox"><span>I <b>opened the source</b> and found the passage.</span></label>
+    <label><input type="checkbox"><span>The source <b>actually says</b> what the answer claims.</span></label>
+    <label><input type="checkbox"><span>I asked <b>how sure it is and where it comes from</b>.</span></label>
+    <label><input type="checkbox"><span>For <b>health, law or money</b>, I confirmed with a person or an original source.</span></label>
+  </div>
+  <p class="verdict" id="cl-v"></p>
+</div></section>
+
+<section class="block" id="series"><div class="wrap">
+  <h2>More in the series</h2>
+  <div class="players"><a class="player" href="../"><img src="../video/poster.alignment.jpg" alt=""><div><h3>Part 1 · The alignment problem</h3><p>Whose values, and how preferences shape a model</p></div></a><a class="player" href="../interpretability/"><img src="../video/poster.interpretability.jpg" alt=""><div><h3>Part 2 · Looking inside the machine</h3><p>What happens inside a model, one feature at a time</p></div></a></div>
+</div></section>
+
+<section class="block" id="sources"><div class="wrap">
+  <h2>Sources</h2>
+  <ul class="sources"><li>Kalai, Nachum, Vempala & Zhang 2025, <a href="https://arxiv.org/abs/2509.04664">Why Language Models Hallucinate</a></li><li>OpenAI 2025, <a href="https://openai.com/index/why-language-models-hallucinate/">Why language models hallucinate (blog, with SimpleQA results)</a></li><li>Kadavath et al. 2022, <a href="https://arxiv.org/abs/2207.05221">Language Models (Mostly) Know What They Know</a></li><li>OpenAI 2023, <a href="https://arxiv.org/abs/2303.08774">GPT-4 Technical Report (calibration)</a></li><li>Farquhar, Kossen, Kuhn & Gal 2024, <a href="https://www.nature.com/articles/s41586-024-07421-0">Detecting hallucinations in large language models using semantic entropy, Nature 630</a></li><li>Lindsey et al. 2025, <a href="https://transformer-circuits.pub/2025/attribution-graphs/biology.html">On the Biology of a Large Language Model (entity recognition and hallucination)</a></li><li>Lewis et al. 2020, <a href="https://arxiv.org/abs/2005.11401">Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</a></li><li>Magesh et al. 2024, <a href="https://arxiv.org/abs/2405.20362">Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools</a></li><li>Tow Center for Digital Journalism 2025, <a href="https://www.niemanlab.org/2025/03/ai-search-engines-fail-to-produce-accurate-citations-in-over-60-of-tests-according-to-new-tow-center-study/">AI search engines fail to produce accurate citations in over 60% of tests (Nieman Lab)</a></li><li>Mata v. Avianca, Inc. 2023, <a href="https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.">S.D.N.Y. sanctions for fabricated citations</a></li><li>Moffatt v. Air Canada 2024, <a href="https://www.mondaq.com/canada/new-technology/1427926/airline-ordered-to-compensate-a-bc-man-because-its-chatbot-provided-inaccurate-information">Airline held responsible for its chatbot</a></li><li>AP 2025, <a href="https://www.ksat.com/business/2025/10/07/deloitte-to-partially-refund-australian-government-for-report-with-apparent-ai-generated-errors/">Deloitte to partially refund Australian government for report with apparent AI-generated errors</a></li><li>Law Society Gazette 2025, <a href="https://www.lawsociety.ie/gazette/top-stories/2025/march/chatgpt-faces-lawsuit-over-false-murder-claim/">ChatGPT faces complaint over false murder claim (noyb)</a></li><li>Charlotin, <a href="https://www.damiencharlotin.com/hallucinations/">AI Hallucination Cases database</a></li></ul>
+</div></section>
+</main>
+
+<footer class="site"><div class="wrap">
+  Made by Birger Moëll. Videos and animations are drawn with code (<a href="https://github.com/BirgerMoell/the-alignment-problem">source on GitHub</a>); narration with the local Kokoro voice. Text CC BY 4.0, code MIT. Status: October 2026.
+</div></footer>
+<script>
+(() => {
+  const b = document.getElementById("theme");
+  try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch {}
+  b.onclick = () => {
+    const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    const t = dark ? "light" : "dark"; document.documentElement.dataset.theme = t;
+    try { localStorage.setItem("theme", t); } catch {}
+  };
+  const v = document.getElementById("vid");
+  document.querySelectorAll(".chapters button").forEach((btn) => btn.onclick = () => { v.currentTime = +btn.dataset.t; v.play(); });
+  v.addEventListener("timeupdate", () => {
+    let on = null; document.querySelectorAll(".chapters button").forEach((btn) => { if (v.currentTime >= +btn.dataset.t - 0.01) on = btn; });
+    document.querySelectorAll(".chapters button").forEach((btn) => btn.classList.toggle("on", btn === on));
+  });
+})();
+</script>
+<script>
+(() => {
+  const pen = document.getElementById("pen");
+  const G = { right: 51, wrong: 49 }, H = { right: 36, wrong: 4 };
+  const draw = () => {
+    const p = +pen.value, g = G.right - p * G.wrong, h = H.right - p * H.wrong;
+    const scale = (x) => Math.max(0, x) / 51 * 100;
+    document.getElementById("g-bar").style.width = scale(g) + "%";
+    document.getElementById("h-bar").style.width = scale(h) + "%";
+    document.getElementById("g-val").textContent = g.toFixed(1).replace(".0", "");
+    document.getElementById("h-val").textContent = h.toFixed(1).replace(".0", "");
+    const t = p / (1 + p);
+    document.getElementById("rule").textContent = p === 0 ? "With no penalty, guessing never hurts, so a model should always answer." : `With this penalty, answering only pays when the model is more than ${Math.round(t * 100)}% sure.`;
+    document.getElementById("verdict").textContent = g > h ? "Guessing wins. This scoring teaches models to bluff." : g < h ? "Honesty wins. Admitting uncertainty pays off." : "A tie.";
+    document.getElementById("verdict").className = "verdict " + (g > h ? "bad" : "good");
+  };
+  pen.oninput = draw;
+  document.querySelectorAll("[data-p]").forEach((b) => b.onclick = () => { pen.value = b.dataset.p; draw(); });
+  draw();
+  const boxes = [...document.querySelectorAll("#cl input")], v = document.getElementById("cl-v");
+  const msg = ["Not checked yet. Treat it as a first draft.", "A start. Keep going.", "Getting there.", "Good. Most made-up details would be caught by now.", "Almost there.", "Checked. Now you can rely on it, and you know why."];
+  const upd = () => { const n = boxes.filter((b) => b.checked).length; v.textContent = msg[n]; v.className = "verdict " + (n === 5 ? "good" : ""); };
+  boxes.forEach((b) => b.onchange = upd); upd();
+})();
+</script>
+</body>
+</html>
