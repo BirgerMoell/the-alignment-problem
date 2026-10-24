@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When AI Acts · live player</title>
+<link rel="icon" href="../../assets/favicon.svg">
+<style>
+  @font-face { font-family: Outfit; src: url(../../assets/fonts/Outfit.ttf); font-weight: 100 900; }
+  :root { --bg: #FFF8EE; --card: #FFFFFF; --line: #EADDCB; --ink: #22304A; --muted: #66728A; --yellow: #7C6CF2; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font-family: Outfit, system-ui, sans-serif; }
+  body { display: flex; flex-direction: column; }
+  .stage { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0; padding: 12px; }
+  canvas { max-width: 100%; max-height: 100%; aspect-ratio: 16 / 9; width: auto; height: 100%; border-radius: 14px; background: #FFF8EE; box-shadow: 0 18px 50px -20px rgba(34,48,74,0.25); }
+  .bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 10px 16px 14px; border-top: 1px solid var(--line); }
+  button, select { font: inherit; font-size: 15px; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; cursor: pointer; }
+  button:hover, select:hover { border-color: var(--yellow); }
+  button.primary { background: var(--yellow); color: #FFFFFF; border-color: var(--yellow); font-weight: 700; min-width: 90px; }
+  .seek { flex: 1 1 220px; height: 8px; border-radius: 4px; background: var(--card); position: relative; cursor: pointer; }
+  .seek i { position: absolute; inset: 0 auto 0 0; background: var(--yellow); border-radius: 4px; }
+  .time { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 14px; min-width: 92px; }
+  .caption { min-height: 2.6em; padding: 0 16px; text-align: center; font-size: 19px; color: var(--ink); max-width: 1100px; margin: 0 auto; }
+  .notes { display: none; padding: 10px 16px; background: var(--card); color: var(--ink); font-size: 18px; border-top: 1px solid var(--line); }
+  body.present .watch-only { display: none; }
+  body:not(.present) .present-only { display: none; }
+  body.present.show-notes .notes { display: block; }
+  .help { color: var(--muted); font-size: 14px; }
+  a { color: var(--yellow); }
+  :fullscreen .stage { padding: 0; }
+</style>
+</head>
+<body>
+<div class="stage"><canvas id="c" aria-label="Animated explainer"></canvas></div>
+<div class="caption watch-only" id="caption" aria-live="polite"></div>
+<div class="notes" id="notes"></div>
+<div class="bar">
+  <button class="primary watch-only" id="play">Play</button>
+  <button class="present-only" id="prev">◀</button>
+  <button class="primary present-only" id="next">Next ▶</button>
+  <div class="seek watch-only" id="seek"><i id="fill"></i></div>
+  <span class="time" id="time"></span>
+  <select id="chapters" aria-label="Chapter"></select>
+  <select id="lang" aria-label="Video"><option value="en">Explainer</option></select>
+  <select id="mode" aria-label="Mode"><option value="watch">Watch</option><option value="present">Present</option></select>
+  <button class="watch-only" id="cc">CC</button>
+  <button class="present-only" id="notesBtn">Notes</button>
+  <button id="fs">⛶</button>
+  <span class="help present-only">→ / space next · ← back · N notes · F fullscreen</span>
+  <a href="../" class="help" id="home">← guide</a>
+</div>
+<audio id="audio" preload="auto"></audio>
+<script src="engine.js"></script>
+
+<script src="scenes.js"></script>
+
+<script>
+(async () => {
+  const q = new URLSearchParams(location.search);
+  const lang = q.get("lang") === "music" ? "music" : "en";
+  const mode = q.get("mode") === "present" ? "present" : "watch";
+  const $ = (id) => document.getElementById(id);
+  const UI = {
+    en: { play: "Play", pause: "Pause", next: "Next ▶", notes: "Notes", watch: "Watch", present: "Present", home: "← guide",
+      help: "→ / space next · ← back · N notes · F fullscreen" },
+    sv: { play: "Spela", pause: "Pausa", next: "Nästa ▶", notes: "Anteckningar", watch: "Titta", present: "Presentera", home: "← guiden",
+      help: "→ / mellanslag nästa · ← tillbaka · N anteckningar · F helskärm" },
+  }[lang === "music" ? "en" : lang];
+  document.documentElement.lang = "en";
+  $("lang").value = lang; $("mode").value = mode;
+  $("next").textContent = UI.next; $("notesBtn").textContent = UI.notes; $("home").textContent = UI.home;
+  $("mode").options[0].text = UI.watch; $("mode").options[1].text = UI.present;
+  document.querySelector(".help.present-only").textContent = UI.help;
+  if (lang === "music") { $("mode").value = "watch"; $("mode").disabled = true; }
+  if (mode === "present") document.body.classList.add("present");
+
+  const tl = await Explainer.init($("c"), lang);
+  document.title = tl.title;
+  const lines = tl.scenes.flatMap((s) => s.lines.map((l) => ({ ...l, scene: s })));
+  tl.scenes.forEach((s, i) => { const o = new Option(`${String(i).padStart(2, "0")} · ${s.chapter}`, i); $("chapters").add(o); });
+  const fmt = (t) => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, "0")}`;
+  const lineAt = (t) => lines.find((l) => t >= l.start && t <= l.end + 0.45);
+  const sceneAt = (t) => tl.scenes.findIndex((s) => t >= s.start && t < s.start + s.dur);
+  let captions = true;
+
+  const reload = (k, v) => { q.set(k, v); location.search = q.toString(); };
+  $("lang").onchange = (e) => reload("lang", e.target.value);
+  $("mode").onchange = (e) => reload("mode", e.target.value);
+  $("fs").onclick = () => (document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen());
+
+  const show = (t) => {
+    Explainer.draw(t);
+    $("time").textContent = `${fmt(t)} / ${fmt(tl.duration)}`;
+    $("fill").style.width = `${(100 * t) / tl.duration}%`;
+    const l = lineAt(t);
+    $("caption").textContent = captions && l ? l.text : "";
+    const si = sceneAt(t); if (si >= 0 && $("chapters").value !== String(si)) $("chapters").value = si;
+  };
+
+  if (mode === "watch") {
+    const audio = $("audio");
+    audio.src = `narration.${lang}.m4a`;
+    const loop = () => { show(audio.currentTime); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+    const toggle = () => (audio.paused ? audio.play() : audio.pause());
+    audio.onplay = () => ($("play").textContent = UI.pause);
+    audio.onpause = () => ($("play").textContent = UI.play);
+    $("play").textContent = UI.play;
+    $("play").onclick = toggle;
+    $("cc").onclick = () => { captions = !captions; $("cc").style.opacity = captions ? 1 : 0.5; };
+    $("seek").onclick = (e) => { const r = e.currentTarget.getBoundingClientRect(); audio.currentTime = ((e.clientX - r.left) / r.width) * tl.duration; };
+    $("chapters").onchange = (e) => { audio.currentTime = tl.scenes[+e.target.value].start + 0.01; };
+    addEventListener("keydown", (e) => {
+      if (e.key === " ") { e.preventDefault(); toggle(); }
+      if (e.key === "ArrowRight") audio.currentTime = Math.min(tl.duration, audio.currentTime + 5);
+      if (e.key === "ArrowLeft") audio.currentTime = Math.max(0, audio.currentTime - 5);
+      if (e.key.toLowerCase() === "f") $("fs").click();
+    });
+  } else {
+    // presenter mode: each step plays the animation for one narration line, then holds
+    let i = 0, t = 0, target = lines[0].end + 0.5, last = performance.now();
+    const notes = () => { $("notes").textContent = `${i + 1}/${lines.length} · ${lines[i].text}`; };
+    const go = (k, jump) => {
+      i = Math.max(0, Math.min(lines.length - 1, k));
+      target = lines[i].end + 0.5;
+      t = jump ? target : Math.min(t, lines[i].start);
+      if (!jump) t = Math.max(t, lines[i].start - 0.6);
+      notes();
+    };
+    const loop = (now) => {
+      const dt = (now - last) / 1000; last = now;
+      if (t < target) t = Math.min(target, t + dt);
+      show(t);
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+    notes();
+    $("next").onclick = () => go(i + 1, false);
+    $("prev").onclick = () => go(i - 1, true);
+    $("notesBtn").onclick = () => document.body.classList.toggle("show-notes");
+    $("chapters").onchange = (e) => { const s = tl.scenes[+e.target.value]; go(lines.findIndex((l) => l.scene === s), false); t = s.start; };
+    addEventListener("keydown", (e) => {
+      if (["ArrowRight", " ", "PageDown", "Enter"].includes(e.key)) { e.preventDefault(); go(i + 1, false); }
+      if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); go(i - 1, true); }
+      if (e.key === "Home") { go(0, false); t = 0; }
+      if (e.key.toLowerCase() === "n") $("notesBtn").click();
+      if (e.key.toLowerCase() === "f") $("fs").click();
+    });
+  }
+})();
+</script>
+</body>
+</html>

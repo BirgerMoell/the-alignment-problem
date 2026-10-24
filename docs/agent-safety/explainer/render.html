@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Explainer renderer</title>
+<style>html,body{margin:0;background:#08131D}canvas{display:block;width:1920px;height:1080px}</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script src="engine.js"></script>
+
+<script src="scenes.js"></script>
+
+<script>
+  // Used by video/render.py: ?lang=en|sv, then window.frame(t) draws one frame.
+  const lang = new URLSearchParams(location.search).get("lang") || "en";
+  window.ready = Explainer.init(document.getElementById("c"), lang).then((tl) => {
+    window.frame = (t) => Explainer.draw(t);
+    return tl.duration;
+  });
+</script>
+</body>
+</html>
